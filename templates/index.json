@@ -1,0 +1,45 @@
+{
+    "sections": {
+        "banner-collection": {
+            "type": "banner-collection",
+            "settings": {
+                "banner_collection": "all"
+            }
+        },
+        "affiliates-collection": {
+            "type": "affiliates-collection",
+            "settings": {
+                "affiliates-collection": "all"
+            }
+        },
+        "main-product": {
+            "type": "main-product",
+            "settings": {
+                "main-product": "all"
+            }
+        },
+        "featured-collection": {
+            "type": "featured-collection",
+            "settings": {
+                "featured_collection": "all"
+            }
+        },
+        "template-footer": {
+            "type": "template-footer",
+            "settings": {
+                "template-footer": "all"
+            }
+        },
+        "secondary-banner": {
+            "type": "secondary-banner",
+            "settings": {
+                "secondary-banner": "all"
+            }
+        }
+        
+
+    },
+    
+    "order": ["banner-collection","affiliates-collection","main-product","featured-collection","secondary-banner","template-footer"]
+    
+}

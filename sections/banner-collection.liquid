@@ -1,0 +1,155 @@
+
+<!-- 
+<div class="w-full h-40vh flex justify-center items-center relative">
+    <h1 class="bg-transparent text-center text-white font-bold text-2xl absolute p-10" style="background-color: #00000082;">{{ section.settings.title }}</h1>
+    <img class="w-full h-[40vh] object-cover" src="{{ section.settings.zeva_image_1 | img_url: 'master' }}" alt="bannerImg" />
+</div>
+-->
+
+<style>
+  /* Estilos para los botones de navegación */
+  .swiper-button-next {
+    color: red !important;
+  }
+
+  .swiper-button-prev {
+    color: green !important;
+  }
+
+  /* Estilos para la paginación */
+  .swiper-pagination-bullet {
+    background-color: rgb(199, 199, 199) !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: white !important;
+  }
+</style>
+
+
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js" defer></script>
+
+<div class="swiper">
+  <div class="swiper-wrapper" class="h-[60vh] text-center bg-black">
+
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="h-[70vh] text-center bg-black text-white">
+                  <p class="absolute z-20 left-0 right-0 text-white top-0 bottom-0 m-auto flex flex-col justify-center font-bold text-4xl"> {{ block.settings.title }}   </p>
+                  <img src="{{ block.settings.image | img_url: 'large' }}" 
+                  loading="lazy"
+                  alt="Slide Image" class="object-cover w-full h-full">
+                  
+              </div>
+            
+          </div>
+        {% endfor %}
+  </div>
+
+  <div class="swiper-pagination"></div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: true, // Habilita el bucle infinito
+        autoplay: {
+          delay: 1500, // Intervalo de tiempo entre las transiciones de diapositivas
+          disableOnInteraction: false // Permite la reproducción automática incluso si el usuario interactúa con el carrusel
+        },
+        pagination: {
+          el: '.swiper-pagination'
+        },
+        navigation: {
+          prevEl: '.swiper-button-prev',
+          nextEl: '.swiper-button-next'
+        }
+      });
+    } catch (e) {
+      console.log("SwiperJs is not defined", e);
+    }
+  });
+</script>
+
+
+
+{% schema %}
+    {
+        "name": "Slideshow",
+        "tag": "section",
+        "class": "slideshow",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Slideshow"
+          }
+        ],
+        "max_blocks": 5,
+        "blocks": [
+          {
+            "name": "Slide",
+            "type": "slide",
+            "settings": [
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id": "title",
+                "label": "slide title"
+              }
+            ]
+          }
+        ],
+        "presets": [
+          {
+            "name": "Slideshow",
+            "settings": {
+              "title": "Slideshow"
+            },
+            "blocks": [
+              {
+                "type": "slide"
+              },
+              {
+                "type": "slide"
+              }
+            ]
+          }
+        ],
+        "locales": {
+          "en": {
+            "title": "Slideshow"
+          },
+          "fr": {
+            "title": "Diaporama"
+          }
+        },
+        "enabled_on": {
+          "templates": ["*"],
+          "groups": ["footer"]
+        }
+    }
+{% endschema %}

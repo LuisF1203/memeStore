@@ -1,0 +1,199 @@
+{% liquid
+    if section.settings.menu.links == blank
+        assign main_menu_linklist = linklists[section.settings.menu].links
+    else
+        assign main_menu_linklist = section.settings.menu.links
+    endif
+%}
+
+<footer class="border-t-2 border-gray-300 border-solid pl-10 pr-10 pb-10">
+    <div>
+        <h1 class="text-center">{{ section.settings.title }}</h1>
+    </div>
+
+    <div class="footer-links flex justify-between mt-10">
+        <div>
+            <h3>Quick Links</h3>
+            <div class="flex md:flex flex-col">
+                {% for link in main_menu_linklist %}
+                    {% if link.links == blank %}
+                        <a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-900">{{ link.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>            
+            <div class="Sn-icons">
+                <ul class="flex justify-around">
+                    {% if section.settings.twitter!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.twitter }}" target="_blank">{% render 'icon-twitter' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.facebook!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.facebook }}" target="_blank" >{% render 'icon-facebook' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.pinterest!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.pinterest }}" target="_blank" >{% render 'icon-pinterest' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.instagram!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.instagram }}" target="_blank" >{% render 'icon-instagram' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.tiktok!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.tiktok }}" target="_blank" >{% render 'icon-tiktok' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.tumblr!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.tumblr }}" target="_blank" >{% render 'icon-tumblr' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.snapchat!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.snapchat }}" target="_blank" >{% render 'icon-snapchat' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.youtube!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.youtube }}" target="_blank" >{% render 'icon-youtube' %}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if section.settings.vimeo!=blank %}
+                        <li class="ml-4">
+                            <a href="{{ section.settings.vimeo }}" target="_blank" >{% render 'icon-vimeo' %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+            <div class="mt-10 pay-icons">
+                <ul class="flex">
+                    <li class="ml-4">{% render 'icon-shopPay' %}</li>
+                    <li class="ml-4">{% render 'icon-visa' %}</li>
+                    <li class="ml-4">{% render 'icon-mastercard' %}</li>
+                    <li class="ml-4">{% render 'icon-applepay' %}</li>
+                    <li class="ml-4">{% render 'icon-googlepay' %}</li>
+                    <li class="ml-4">{% render 'icon-amex' %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    @media (max-width: 768px) {
+        .footer-links{
+            display: block;
+            margin-top: 0;
+        }
+        .footer-links{
+            margin-top: 20px;
+        }
+        .footer-links .pay-icons ul{
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+        .footer-links .pay-icons ul li svg{
+            margin: auto;
+        }
+        .Sn-icons{
+            margin-top: 50px;
+        }
+    }
+
+</style>
+
+{% schema %}
+    {
+        "name": "Footer",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title",
+                "default": "Footer Title"
+            },
+            {
+                "type": "link_list",
+                "id": "menu",
+                "default": "main-menu",
+                "label": "Heading Navigation Menu"
+            },            
+            {
+                "type": "text",
+                "id": "twitter",
+                "label": "Twitter",
+                "default": "Footer Twitter"
+            },
+            {
+                "type": "text",
+                "id": "facebook",
+                "label": "Facebook",
+                "default": "Footer Facebook"
+            },            
+            {
+                "type": "text",
+                "id": "pinterest",
+                "label": "Pinterest",
+                "default": "Footer Pinterest"
+            },
+            {
+                "type": "text",
+                "id": "instagram",
+                "label": "Instagram",
+                "default": "Footer Instagram"
+            },            
+            {
+                "type": "text",
+                "id": "tiktok",
+                "label": "Tiktok",
+                "default": "Footer Tiktok"
+            },
+            {
+                "type": "text",
+                "id": "tumblr",
+                "label": "Tumblr",
+                "default": "Footer Tumblr"
+            },            
+            {
+                "type": "text",
+                "id": "snapchat",
+                "label": "Snapchat",
+                "default": "Footer Snapchat"
+            },
+            {
+                "type": "text",
+                "id": "youtube",
+                "label": "Youtube",
+                "default": "Footer Yutube"
+            },
+            {
+                "type": "text",
+                "id": "vimeo",
+                "label": "Vimeo",
+                "default": "Footer Vimeo"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Footer"
+            }
+        ]
+    }
+{% endschema %}

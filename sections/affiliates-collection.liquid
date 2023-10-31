@@ -1,0 +1,104 @@
+<div class="slider">
+	<div class="slide-track">
+    {% for block in section.blocks %}
+      <div class="slide m-auto flex">
+        <img src="{{ block.settings.image | img_url: 'large' }}" 
+        loading="lazy"
+        alt="Slide Image" class="w-14 m-auto">
+      </div>
+    {% endfor %}
+	</div>
+</div>
+
+<style>
+  .slider{
+    width: 75vw;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+  }
+  .slider::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+	}
+
+  .slide-track{
+    display: flex;
+    
+    -webkit-animation: carousel 40s linear infinite;
+    animation: carousel 40s linear infinite;
+    width: calc(250px * 14);
+  }
+  .slide {
+		height: 100px;
+		width: 250px;
+	}
+
+  @keyframes carousel {
+    0% { transform: translateX(0); }
+	100% { transform: translateX(calc(-250px * 7))}
+  }
+</style>
+
+
+
+{% schema %}
+    {
+        "name": "Affiliates Slideshow",
+        "tag": "section",
+        "class": "slideshow",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Slideshow"
+          }
+        ],
+        "max_blocks": 14,
+        "blocks": [
+          {
+            "name": "Slide",
+            "type": "slide",
+            "settings": [
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+              }
+            ]
+          }
+        ],
+        "presets": [
+          {
+            "name": "Slideshow",
+            "settings": {
+              "title": "Slideshow"
+            },
+            "blocks": [
+              {
+                "type": "slide"
+              },
+              {
+                "type": "slide"
+              }
+            ]
+          }
+        ],
+        "locales": {
+          "en": {
+            "title": "Slideshow"
+          },
+          "fr": {
+            "title": "Diaporama"
+          }
+        },
+        "enabled_on": {
+          "templates": ["*"],
+          "groups": ["footer"]
+        }
+    }
+{% endschema %}

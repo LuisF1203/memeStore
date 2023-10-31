@@ -1,0 +1,392 @@
+{% comment %}
+    Starts for pc
+{% endcomment %}
+<div class="main-product-pc-section max-w-[2000px] max-h-[2000px] m-auto rounded-lg border-[1px] break-words  mt-[10vh] mb-[10wh]" style=" color: {{ section.settings.text_color }} !important; border-color: {{ section.settings.main_color }};">
+    <div class="infoPro">
+        <div >
+            <div class="w-full h-[700px] text-center relative">
+                <img src="{{ section.settings.image | img_url: 'large' }}" 
+                loading="lazy"
+                alt="Slide Image" class="w-[100%] h-[100%] object-contain m-auto">
+                <a href="{{ section.settings.product.url }}" class="bg-white text-black outline-none border-none p-2 cursor-pointer rounded-lg font-bold absolute top-[600px]  left-[42%] right-[42%]"> SEE MORE</a>
+            </div>
+            <div class="grid border-[1px] border-l-0 border-r-0 " style="grid-template-columns: 60% 40%; border-color: {{ section.settings.main_color }};">
+                <div class="border-r-[1px]" style="border-color: {{ section.settings.main_color }};">
+                    <h2 class="font-bold text-4xl pt-6 pl-4 pb-4"> 
+                    
+                    {{ section.settings.title }} </h2>
+                    <div class="grid" style="grid-template-columns: 20% 20% 60%;">
+                        <p class="border-t-[1px] border-l-0 flex" style="border-color: {{ section.settings.main_color }};">
+                            <span class="flag-discount m-auto ml-[25%]"style="color:white;">${{ section.settings.price }}</span>
+                        </p>
+                        <div class="border-l-[1px] border-t-[1px] pt-4 pl-8 pb-4 flex" style="border-color: {{ section.settings.main_color }};">                     
+                        <img src="{{ section.settings.store_icon | img_url: 'large' }}" 
+                        loading="lazy" alt="ImageIcon" class="w-[40px]"> <p class="flex m-auto ml-2">{{ shop.name }}</p>  </div>
+                        <p class="border-l-[1px] border-t-[1px] pt-2 pl-2 pb-2 flex" style="border-color: {{ section.settings.main_color }};">
+                            {% for i in (1..section.settings.numberStars) %}
+                                {% render 'icon-star'%}
+                              {% endfor %} 
+                            <span class="m-auto ml-3">{{ section.settings.numberRatings }} Ratings</span>
+                            </p>
+                    </div>
+                </div>
+                <div class=" border-0 flex">
+                    <div class="flex m-auto">
+                        <a href="{{ section.settings.product.url }}" class="p-2 pl-20 pr-20 rounded-md text-4xl font-bold" style="color:{{ section.settings.buy_btn_txt_color }}; background: {{ section.settings.main_color }};">{{ section.settings.buy_btn }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid" style="grid-template-columns: 60% 40%;">
+            <div class="border-[1px] border-t-0  border-b-0 border-l-0 pl-14 pt-10 pb-14" style="border-color: {{ section.settings.main_color }};">
+                <h4 class="font-bold text-xl mb-5">{{ section.settings.subtitle }}</h4>
+                <ul class="list-disc pl-5">
+                    {% for block in section.blocks %}
+                        <li><p>{{ block.settings.list_text }}</p></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="border-[1px] border-b-0 border-r-0 border-l-0 border-t-0 " style="border-color: {{ section.settings.main_color }};">
+                
+                <div class="flex justify-between p-20 pt-14 pb-14">
+                    <p class="flex">RATINGS <span class="ml-3 flex">{% render 'icon-star' %} {{ section.settings.numberStars }}.0</span>  </p>
+                    <p>({{ section.settings.numberRatings }} Ratings)</p>
+                </div>
+                <div>
+                    <div class="flex  mb-5 " >
+                        <p class="m-auto">5.0</p>
+                        <div class="w-[80%] border-[1px] rounded-lg" style="border-color: {{ section.settings.outline_color }};">
+                            {% if section.settings.rating5>0 %}
+                                <div class="p-10 pt-3 pb-3 rounded-lg" style="width: {{ section.settings.rating5 }}%; background: {{ section.settings.main_color }};"></div>
+                                {% else %}
+                                <div class="bg-black p-0 pt-0 pb-0 rounded-lg" style="width: {{ section.settings.rating5 }}%; background: {{ section.settings.main_color }};"></div>
+                            {% endif %}
+                        </div>
+                        <p class="m-auto">{{ section.settings.rating5 }}%</p>
+                    </div>
+                    <div class="flex  mb-5" >
+                        <p class="m-auto">4.0</p>
+                        <div class="w-[80%] border-[1px] rounded-lg" style="border-color: {{ section.settings.outline_color }};">
+                            {% if section.settings.rating4>0 %}
+                                <div class="bg-black p-10 pt-3 pb-3 rounded-lg" style="width: {{ section.settings.rating4 }}%;   background: {{ section.settings.main_color }};"></div>
+                                {% else %}
+                                <div class="bg-black p-0 pt-0 pb-0 rounded-lg" style="width: {{ section.settings.rating4 }}%;  background: {{ section.settings.main_color }};"></div>
+                            {% endif %}
+                        </div>
+                        <p class="m-auto">{{ section.settings.rating4 }}%</p>
+                    </div>
+                    <div class="flex  mb-5" >
+                        <p class="m-auto">3.0</p>
+                        <div class="w-[80%] border-[1px] rounded-lg" style="border-color: {{ section.settings.outline_color }};">
+                            {% if section.settings.rating3>0 %}
+                                <div class="bg-black p-10 pt-3 pb-3 rounded-lg" style="width: {{ section.settings.rating3 }}%; background: {{ section.settings.main_color }};"></div>
+                                {% else %}
+                                <div class="bg-black p-0 pt-0 pb-0 rounded-lg" style="width: {{ section.settings.rating3 }}%; background: {{ section.settings.main_color }};"></div>
+                            {% endif %}
+                        </div>
+                        <p class="m-auto">{{ section.settings.rating3 }}%</p>
+                    </div>
+                    <div class="flex  mb-5" >
+                        <p class="m-auto"> 2.0</p>
+                        <div class="w-[80%] border-[1px] rounded-lg" style="border-color: {{ section.settings.outline_color }};">
+                            {% if section.settings.rating2>0 %}
+                                <div class="bg-black p-10 pt-3 pb-3 rounded-lg" style="width: {{ section.settings.rating2 }}%; background: {{ section.settings.main_color }};"></div>
+                                {% else %}
+                                <div class="bg-black p-0 pt-0 pb-0 rounded-lg" style="width: {{ section.settings.rating2 }}%; background: {{ section.settings.main_color }};"></div>
+                            {% endif %}
+                        </div>
+                        <p  class="m-auto">{{ section.settings.rating2 }}%</p>
+                    </div>                    
+                    <div class="flex mb-5" >
+                        <p  class="m-auto">1.0</p>
+                        <div class="w-[80%] border-[1px] rounded-lg" style="border-color: {{ section.settings.outline_color }};">
+                            {% if section.settings.rating1>0 %}
+                                <div class="bg-black p-10 pt-3 pb-3 rounded-lg" style="width: {{ section.settings.rating1 }}%; background: {{ section.settings.main_color }};"></div>
+                                {% else %}
+                                <div class="bg-black p-0 pt-0 pb-0 rounded-lg" style="width: {{ section.settings.rating1 }}%; background: {{ section.settings.main_color }};"></div>
+                            {% endif %}
+                            
+                                
+                            
+                        </div>
+                        <p  class="m-auto">{{ section.settings.rating1 }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% comment %}
+    Ends for pc
+{% endcomment %}
+
+
+
+
+
+
+{% comment %}
+    Starts for mobile
+{% endcomment %}
+<div class="hidden main-product-phone-section rounded-lg border-[1px] break-words  mt-[10vh] mb-[10wh]" style=" color: {{ section.settings.text_color }} !important; border-color: {{ section.settings.main_color }};">
+    <div class="infoPro">
+        <div >
+            <div class="w-full h-[700px] text-center relative">
+                <img src="{{ section.settings.image | img_url: 'large' }}" 
+                loading="lazy"
+                alt="Slide Image" class="w-[100%] h-[100%] object-contain m-auto">
+                <div class="absolute top-[80%] left-0 right-0 justify-center"> 
+                    <a href="{{ section.settings.product.url }}" class="p-2 rounded-md" style="color:{{ section.settings.buy_btn_txt_color }}; background: {{ section.settings.main_color }};">{{ section.settings.buy_btn }}</a>
+                </div>
+            </div>
+
+
+
+
+            <div 
+                class="info-block-phone grid border-[1px] border-l-0 border-r-0 border-b-0" 
+                style="grid-template-columns: 60% 40%; border-color: {{ section.settings.main_color }};">
+                <div style="border-color: {{ section.settings.main_color }};">
+                    <h2 class="font-bold text-4xl pt-6 pl-4 pb-4"> 
+                    
+                    {{ section.settings.title }} </h2>
+                    <div class="grid info-block-rnp" style="grid-template-columns: 20% 20% 60%;">
+                        <p class="border-t-[1px] border-l-0 flex" style="border-color: {{ section.settings.main_color }};">
+                            <span class="flag-discount m-auto ml-[25%]"style="color:white;">${{ section.settings.price }}</span>
+                        </p>
+                        <div class="border-l-[1px] border-t-[1px] pt-4 pb-4 flex" style="border-color: {{ section.settings.main_color }};">                     
+                            <img src="{{ section.settings.store_icon | img_url: 'large' }}" 
+                            loading="lazy" alt="ImageIcon" class="w-[40px] m-auto">
+                        </div>
+                        <p class="border-l-[1px] border-t-[1px] pt-2 pl-2 pb-2 flex" style="border-color: {{ section.settings.main_color }};">
+                            {% for i in (1..section.settings.numberStars) %}
+                                {% render 'icon-star'%}
+                              {% endfor %} 
+                            <span class="m-auto ml-3">{{ section.settings.numberRatings }} Ratings</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+{% comment %}
+    Ends for phone
+{% endcomment %}
+
+
+
+<style>
+    @media (max-width: 768px) {
+        .main-product-pc-section{
+            display: none;
+        }
+        .main-product-phone-section{
+            display: block;
+        }
+        .info-block-phone{
+            display: block;
+        }
+        .info-block-rnp{
+            grid-template-columns: auto auto auto !important;
+        }
+    }
+
+
+    .flag-discount {
+    color: #fff;
+    display: block;
+    float: left;
+    padding: 2px 20px;
+    background:{{ section.settings.main_color }};
+    font-size: 20px;
+    font-weight: 400;
+    position: relative;
+}
+.flag-discount::before,
+.flag-discount::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    display: block;
+}
+.flag-discount::before {
+    top: 0;
+    border-width: 22px 15px 0 0;
+    border-color: {{ section.settings.main_color }} transparent transparent transparent;
+}
+.flag-discount::after {
+    bottom: 0;
+    border-width: 0 15px 22px 0;
+    border-color: transparent transparent {{ section.settings.main_color }} transparent;
+}
+.star-icon-svg{
+    fill: {{ section.settings.main_color }};
+}
+</style>
+
+
+{% schema %}
+{
+    "name": "Main product",
+    "settings": [
+        {
+        "type": "color",
+        "id": "main_color",
+        "label": "main color",
+        "default": "#000000"
+        },
+        {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+        },
+        {
+            "type": "product",
+            "id": "product",
+            "label": "Product section"
+        },
+        {
+            "type": "image_picker",
+            "id": "store_icon",
+            "label": "Store Icon"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Name product",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "default": "Subtitle",
+            "label": "subtitle"
+        }
+        ,{
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "number",
+            "id": "price",
+            "default": 20,
+            "label": "Price"
+        },
+        {
+            "type": "number",
+            "id": "numberRatings",
+            "default": 20,
+            "label": "Number of ratings"
+        },
+        {
+            "type": "text",
+            "id": "buy_btn",
+            "default": "Download",
+            "label": "Buy text"
+        },
+        {
+        "type": "color",
+        "id": "buy_btn_txt_color",
+        "label": "Buy text color",
+        "default": "#FFFFFF"
+        },
+        {
+            "type": "range",
+            "id": "numberStars",
+            "default": 5,
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "label": "Number of stars"
+        },
+        {
+        "type": "color",
+        "id": "outline_color",
+        "label": "Outline color",
+        "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "rating5",
+            "min": 0,
+            "max": 100,
+            "default": 0,
+            "label": "Rating 5 star"
+        },
+        {
+            "type": "range",
+            "id": "rating4",
+            "min": 0,
+            "max": 100,
+            "default": 0,
+            "label": "Rating 4 star"
+        },
+        {
+            "type": "range",
+            "id": "rating3",
+            "min": 0,
+            "max": 100,
+            "default": 0,
+            "label": "Rating 3 star"
+        },
+        {
+            "type": "range",
+            "id": "rating2",
+            "min": 0,
+            "max": 100,
+            "default": 0,
+            "label": "Rating 2 star"
+        },
+        {
+            "type": "range",
+            "id": "rating1",
+            "min": 0,
+            "max": 100,
+            "default": 0,
+            "label": "Rating 1 star"
+        }
+
+
+        
+    ],
+    "max_blocks": 6,
+    "blocks": [
+      {
+        "name": "List",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "list_text",
+            "label": "List text",
+            "default": "lorem impsun"
+          }
+        ]
+      }
+    ],
+    "presets": [
+        {
+            "name": "Main product"
+        }
+    ]
+}
+    {% endschema %}
