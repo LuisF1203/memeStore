@@ -10,7 +10,8 @@
                         loading="lazy"
                         alt="{{ product_product.featured_image.alt }}"
                     >
-                    <a href="#" class="absolute text-black top-[80%] bg-white left-[35%] right-[35%] text-center rounded-md font-bold text-3xl p-6 pt-2 pb-2">SHOP NOW</a>
+                    <a href="#" class="shopNowLink absolute text-black top-[80%] bg-white left-[35%] right-[35%] text-3xl text-center rounded-md font-bold p-6 pt-2 pb-2">SHOP NOW</a>
+
                 </div>
                 
             {% else %}
@@ -19,3 +20,13 @@
         </a>
     </div>
 </div>
+
+<style>
+    @media (max-width: 768px) {
+        .shopNowLink{
+            font-size: 1rem;
+            padding: 0;
+        }
+    }
+
+</style>

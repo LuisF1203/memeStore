@@ -29,17 +29,10 @@
             "settings": {
                 "template-footer": "all"
             }
-        },
-        "secondary-banner": {
-            "type": "secondary-banner",
-            "settings": {
-                "secondary-banner": "all"
-            }
         }
-        
 
     },
     
-    "order": ["banner-collection","affiliates-collection","main-product","featured-collection","secondary-banner","template-footer"]
+    "order": ["banner-collection","affiliates-collection","main-product","featured-collection","template-footer"]
     
 }

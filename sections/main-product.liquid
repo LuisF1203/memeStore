@@ -20,8 +20,9 @@
                             <span class="flag-discount m-auto ml-[25%]"style="color:white;">${{ section.settings.price }}</span>
                         </p>
                         <div class="border-l-[1px] border-t-[1px] pt-4 pl-8 pb-4 flex" style="border-color: {{ section.settings.main_color }};">                     
-                        <img src="{{ section.settings.store_icon | img_url: 'large' }}" 
-                        loading="lazy" alt="ImageIcon" class="w-[40px]"> <p class="flex m-auto ml-2">{{ shop.name }}</p>  </div>
+                            <img src="{{ section.settings.store_icon | img_url: 'large' }}" 
+                            loading="lazy" alt="ImageIcon" class="w-[40px]">
+                        </div>
                         <p class="border-l-[1px] border-t-[1px] pt-2 pl-2 pb-2 flex" style="border-color: {{ section.settings.main_color }};">
                             {% for i in (1..section.settings.numberStars) %}
                                 {% render 'icon-star'%}
@@ -132,7 +133,7 @@
 <div class="hidden main-product-phone-section rounded-lg border-[1px] break-words  mt-[10vh] mb-[10wh]" style=" color: {{ section.settings.text_color }} !important; border-color: {{ section.settings.main_color }};">
     <div class="infoPro">
         <div >
-            <div class="w-full h-[700px] text-center relative">
+            <div class="w-full h-[400px] text-center relative">
                 <img src="{{ section.settings.image | img_url: 'large' }}" 
                 loading="lazy"
                 alt="Slide Image" class="w-[100%] h-[100%] object-contain m-auto">
@@ -151,19 +152,14 @@
                     <h2 class="font-bold text-4xl pt-6 pl-4 pb-4"> 
                     
                     {{ section.settings.title }} </h2>
-                    <div class="grid info-block-rnp" style="grid-template-columns: 20% 20% 60%;">
-                        <p class="border-t-[1px] border-l-0 flex" style="border-color: {{ section.settings.main_color }};">
-                            <span class="flag-discount m-auto ml-[25%]"style="color:white;">${{ section.settings.price }}</span>
+                    <div class="grid info-block-rnp" style="grid-template-columns: 60% 40%;">
+                        <p class="border-t-[1px] border-l-0 flex p-2" style="border-color: {{ section.settings.main_color }};">
+                            <span class="flag-discount m-auto"style="color:white;">${{ section.settings.price }}</span>
                         </p>
-                        <div class="border-l-[1px] border-t-[1px] pt-4 pb-4 flex" style="border-color: {{ section.settings.main_color }};">                     
-                            <img src="{{ section.settings.store_icon | img_url: 'large' }}" 
-                            loading="lazy" alt="ImageIcon" class="w-[40px] m-auto">
-                        </div>
                         <p class="border-l-[1px] border-t-[1px] pt-2 pl-2 pb-2 flex" style="border-color: {{ section.settings.main_color }};">
                             {% for i in (1..section.settings.numberStars) %}
                                 {% render 'icon-star'%}
                               {% endfor %} 
-                            <span class="m-auto ml-3">{{ section.settings.numberRatings }} Ratings</span>
                         </p>
                     </div>
                 </div>
@@ -200,9 +196,9 @@
         .info-block-phone{
             display: block;
         }
-        .info-block-rnp{
+        /*.info-block-rnp{
             grid-template-columns: auto auto auto !important;
-        }
+        }*/
     }
 
 
