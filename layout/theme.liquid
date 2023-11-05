@@ -20,6 +20,9 @@
         display: none !important;
       }
     </style>
+
+    <link rel="icon" href="{{ settings.custom_favicon | img_url: 'small' }}" type="image/x-icon">
+    <meta name="description" content="{{ settings.custom_description}}">
   </head>
   <body style="background-color: {% if settings.custom_background_color %}{{ settings.custom_background_color }}{% else %}#ffffff{% endif %};">
     {% section 'header' %}

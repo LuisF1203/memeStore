@@ -17,5 +17,26 @@
         "default": "#ffffff"
       }
     ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "custom_favicon",
+        "label": "icon"
+      }
+    ]
+  },
+  {
+    "name": "Meta Description",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_description",
+        "label": "text",
+        "default": "Your description"
+      }
+    ]
   }
 ]
