@@ -5,14 +5,37 @@
         assign main_menu_linklist = section.settings.menu.links
     endif
 %}
+<script>
+    window.addEventListener('scroll', function() {
+            var totalHeight = document.body.scrollHeight - window.innerHeight;
+            var scrollPercentage = (window.scrollY / totalHeight) * 100;
+            console.log("User is scrolling! Scroll position: " + scrollPercentage + "%");
+            if(scrollPercentage>=10){
+                document.getElementById("main-nav").style.background="black";
+            }else{
+                document.getElementById("main-nav").style.background="none";
+            }
+        });
+</script>
 
-<h1 class="fixed top-0 left-0 right-0 z-10  text-center font-bold" style="color:{{ section.settings.bundle_text_color }}; background: {{ section.settings.bundle_main_color }};">{{ section.settings.bundle_text }}</h1>
-<div class="fixed top-6 left-0 right-0 z-10 " style="color:{{ section.settings.main_text_color }}; background: {{ section.settings.main_color }};" x-data="{ mobileMenuOpen: false, searchBarOpen: false }" x-cloak>
+
+<div class="fixed top-0 left-0 right-0 z-10 " style="transition: 0.5s;" id="main-nav">
+
+
+
+<!--{{ section.settings.bundle_text_color }}-->
+<!--{{ section.settings.main_text_color }}-->
+<!--{{ section.settings.options_text_color }}-->
+
+<h1 class="absoulte top-0 left-0 right-0 z-10 text-sm text-center font-bold" style="font-family: Arial, sans-serif; color:white;">{{ section.settings.bundle_text }}</h1>
+<div class="absoulte top-6 left-0 right-0 z-10 " style="color:white;" x-data="{ mobileMenuOpen: false, searchBarOpen: false }" x-cloak>
     <div class="mx-auto px-4 sm:px-6">
         <div class="flex justify-center items-center py-6 md:justify-center md:space-x-10">
             <!-- STORE NAME / STORE LOGO -->
             <div class="">
-                <a href="/" class="text-xl font-bold truncate">{{ shop.name }}</a>
+                <h1>
+                    <a href="/" class="text-4xl font-bold truncate">{{ shop.name }}</a>
+                </h1>
                 <!-- NAVIGATION MENU 
                 
                 <nav class="hidden ml-32 md:flex space-x-10">
@@ -21,7 +44,7 @@
                  -->
             </div>
             
-            <div class=" absolute flex right-5 space-x-5" style="color: {{ section.settings.options_text_color }};">
+            <div class=" absolute flex right-5 space-x-5" style="color: white;">
                 <div class="nav-icons flex gap-5">
                     <button x-on:click="searchBarOpen = true" type="button" class="whitespace-nowrap text-base hover:opacity-75" >
                         {% render 'icon-search' %}
@@ -146,6 +169,8 @@
             </form>
         </div>
     </div>
+</div>
+
 </div>
 
 <style>
