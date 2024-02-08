@@ -1,8 +1,43 @@
 <div class="flex flex-col items-center my-8">
-    <h1 class="text-center text-3xl">{{ section.settings.title }}</h1>
+
+    <div class="slider">
+        <div class="slide-track gap-20">
+            {% for i in (1..14) %}
+                <h1 class=" text-center animate-pulse text-9xl">{{ section.settings.title }}</h1>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <style>
+        .slider{
+            width: 100vw;
+            height: auto;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slide-track{
+            display: flex;
+            
+            -webkit-animation: carousel 40s linear infinite;
+            animation: carousel 40s linear infinite;
+            width: calc(250px * 14);
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 7))}
+        }
+    </style>
+
+
+
     <h2 class="text-center text-xl">{{ section.settings.subtitle }}</h2>
-    <div class="w-full max-w-[2000px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    
+      
+    <div class="w-full max-w-[2000px] mx-auto p-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
                 {% render 'product-card', product_product: product %}
             {% else %}

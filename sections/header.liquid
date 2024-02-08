@@ -11,7 +11,7 @@
             var scrollPercentage = (window.scrollY / totalHeight) * 100;
             console.log("User is scrolling! Scroll position: " + scrollPercentage + "%");
             if(scrollPercentage>=10){
-                document.getElementById("main-nav").style.background="black";
+                document.getElementById("main-nav").style.background="rgba(0, 0, 0, 0.900)";
             }else{
                 document.getElementById("main-nav").style.background="none";
             }
@@ -19,8 +19,14 @@
 </script>
 
 
-<div class="fixed top-0 left-0 right-0 z-10 " style="transition: 0.5s;" id="main-nav">
+<div class="fixed top-0 left-0 right-0 z-20 " style="transition: 0.5s;" id="main-nav">
 
+    <style>
+        #main-nav:hover{
+            background-color:rgba(0, 0, 0, 0.900) !important;
+        }
+
+    </style>
 
 
 <!--{{ section.settings.bundle_text_color }}-->

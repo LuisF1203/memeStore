@@ -1,5 +1,12 @@
 <div class="banner bg-red-400 flex" style="margin-top: -120px;">
   <video style="filter: brightness(50%);" class="m-auto w-full" src="{{section.settings.video.sources[1].url}}" loop muted playsinline autoplay></video>
+  <div class="absolute text-white text-justify" style="top: 40%; right: 10%; left: 60%; ">
+        <p style="text-align: justify; opacity: 50%;">
+            {{section.settings.text}}
+
+        </p>
+        <button class="mt-10 w-full text-center hover:opacity-0" style="opacity: 50%;">{{section.settings.txtBtn}}</button>
+    </div>
 </div>
 
 {% schema %}
@@ -11,8 +18,13 @@
     "settings": [
         {
             "type": "text",
-            "id": "title",
+            "id": "text",
             "label": "Slideshow"
+        },
+        {
+            "type": "text",
+            "id": "txtBtn",
+            "label": "Button"
         },
         {
             "type": "video",
