@@ -1,4 +1,11 @@
+<div class="fixed top-0 left-0 right-0 bottom-0 bg-black">
+    <video class="w-full object-cover h-full opacity-20 blur-lg" src="{{section.settings.video.sources[1].url}}" loop muted autoplay playsinline ></video>
+</div>
+
+
 <div class="h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8" x-data="{ loginForm: true, pwRecoverForm: false }">
+
+
     <div x-show="loginForm" class="max-w-md w-full space-y-8">
         <div>
             <h1 class="text-center text-3xl font-bold mt-6">Sign in to your account</h1>
@@ -18,7 +25,7 @@
                         name="customer[email]"
                         id="email_address"
                         autocomplete="email"
-                        class="relative block w-full px-3 py-2 border"
+                        class="relative block w-full px-3 py-2 border outline-none rounded-lg"
                         placeholder="Email address"
                     >
                 </div>
@@ -30,19 +37,19 @@
                             name="customer[password]"
                             id="password"
                             autocomplete="current-password"
-                            class="relative block w-full px-3 py-2 border"
+                            class="relative block w-full px-3 py-2 border outline-none rounded-lg"
                             placeholder="Password"
                         >
                     </div>
                 {% endif %}
 
                 <div class="my-2 text-sm">
-                    <a x-on:click="loginForm = false; pwRecoverForm = true" href="#" class="underline text-gray-500 hover:text-gray-900">
+                    <a x-on:click="loginForm = false; pwRecoverForm = true" href="#" class="underline text-white hover:text-gray-900">
                         Forgot your password?
                     </a>
                 </div>
-                <div>
-                    <button type="submit" class="relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900">
+                <div class="flex">
+                    <button type="submit" class="relative w-52 m-auto py-2 px-4 text-sm font-medium text-white rounded-full bg-blue-500  hover:bg-blue-600">
                         Sign in
                     </button>
                 </div>
@@ -101,3 +108,18 @@
         </div>
     </div>
 </div>
+
+
+{% schema %}
+    {
+        "name": "Login",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "video",
+                "id": "video",
+                "label": "video"
+            }
+        ]
+    }
+{% endschema %}
