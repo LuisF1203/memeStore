@@ -73,6 +73,29 @@
                                         <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
                                     {% endif %}
                                 </div>
+
+                                
+                            {% when 'checkout_buttons' %}
+                                <div class="my-3">
+                                    <button type="submit" name="add" class="justify-center w-full px-6 py-4 bg-yellow-500 text-white hover:bg-yellow-600 rounded-sm my-2 flex"
+                                        {% if selected_variant.available == false %}
+                                            disabled
+                                        {% endif %}
+                                    >
+                                        {% if selected_variant.available == false %}
+                                            Sin Stock
+                                        {% else %}
+
+                                            <span class="mt-auto mb-auto mr-5">Agregar al carrito</span>
+                                            <span class="mt-auto mb-auto ">{% render 'icon-shopping-cart' %}</span>
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            {% else %}
+                            
+
+
+
                             {% when 'variant_selector' %}
                                 <div class="my-3">
                                     {% unless product.has_only_default_variant %}
@@ -121,21 +144,7 @@
                                     <p class="text-gray-700">{{ product.description }}</p>
                                 </div>
 
-                            {% when 'checkout_buttons' %}
-                                <div class="my-3">
-                                    <button type="submit" name="add" class="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
-                                        {% if selected_variant.available == false %}
-                                            disabled
-                                        {% endif %}
-                                    >
-                                        {% if selected_variant.available == false %}
-                                            Sold out
-                                        {% else %}
-                                            Add to cart
-                                        {% endif %}
-                                    </button>
-                                </div>
-                            {% else %}
+
                                 
                         {% endcase %}
                     {% endfor %}
@@ -289,6 +298,11 @@
             "limit": 1
         },
         {
+            "type": "checkout_buttons",
+            "name": "Checkout Buttons",
+            "limit": 1
+        },
+        {
             "type": "variant_selector",
             "name": "Variant Selector",
             "limit": 1
@@ -301,11 +315,6 @@
         {
             "type": "description",
             "name": "Description",
-            "limit": 1
-        },
-        {
-            "type": "checkout_buttons",
-            "name": "Checkout Buttons",
             "limit": 1
         }
     ]
