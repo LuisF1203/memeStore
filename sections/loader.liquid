@@ -1,0 +1,65 @@
+<div id="loader" class="transition-opacity fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center" style="background-color: {{ section.settings.bgColor  }};">
+    <div class="w-full flex items-center justify-center">
+      {% if section.settings.shopname %}
+        <h1 class="animate-pulse text-5xl" 
+            style="color: {{ section.settings.textColor  }};">{{ shop.name }}</h1>
+        {% else %}
+        <img class="w-[20%]"
+        src="{{ section.settings.logo | image_url: width: 960 }}"
+        width="{{ item.width }}"
+        height="{{ item.height }}"
+        loading="lazy"
+        alt="{{ item.title | escape }}"> 
+      {% endif %}
+      
+    </div>
+  </div>
+
+<script>
+    setTimeout(() => {
+      document.getElementById('loader').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loader').style.display = "none";
+      }, 100);
+    }, {{ section.settings.number }});
+</script> 
+
+{% schema %}
+{
+    "name": "Loader",
+    "settings": [
+            {
+                "type": "checkbox",
+                "id": "shopname",
+                "default":true,
+                "label": "Show shop name"
+            },
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "Logo"
+            },
+            {
+                "type": "color",
+                "id": "bgColor",
+                "label": "Background color"
+            },
+            {
+                "type": "color",
+                "id": "textColor",
+                "label": "Text color"
+            },
+            {
+                "type": "number",
+                "id": "number",
+                "default":2000,
+                "label": "Loader duration"
+            }
+        ],
+    "presets": [
+        {
+            "name": "loader"
+        }
+    ]
+}
+{% endschema %}

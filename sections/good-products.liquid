@@ -1,0 +1,43 @@
+<div class="mt-52">
+    <div class="w-full max-w-[2000px] mx-auto p-10">
+        <h2 class="text-4xl text-black">También te puede gustar</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
+                {% render 'product-card', product_product: product %}
+            {% else %}
+                {% for item in (1..3) %}
+                    {% render 'product-card-placeholder' %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+</div>
+
+{% schema %}
+{
+    "name": "Good products",
+    "settings": [
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Collection"
+        },
+        {
+            "type": "range",
+            "id": "number_of_products_to_show",
+            "min": 3,
+            "max": 12,
+            "default": 3,
+            "label": "Number of products to show"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Good products"
+        }
+    ]
+
+}
+{% endschema %}
