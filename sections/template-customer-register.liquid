@@ -5,7 +5,7 @@
 <div class="h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <div>
-            <h1 class="text-center text-3xl font-bold mt-6">Register an account</h1>
+            <h1 class="relative text-white text-center text-3xl font-bold mt-6">Register an account</h1>
         </div>
         <div class="mt-8">
             {% form 'create_customer' %}
@@ -16,60 +16,58 @@
                     </div>
                 {% endif %}
 
-                <div class="my-2">
-                    <label for="first_name" class="sr-only">First name</label>
+                <div class="my-2 flex bg-white relative rounded py-2 px-3">
+                    <label for="first_name" class="w-[20%] text-gray-500 text-xs flex border-r-2">
+                        <span class="m-auto ml-0">First name</span>
+                    </label>
                     <input type="text"
-                        name="customer[first_name]"
-                        id="first_name"
-                        autocomplete="given-name"
-                        class="relative block w-full px-3 py-2 border outline-none rounded-lg"
-                        placeholder="First name"
-                    >
+                    name="customer[first_name]"
+                    id="first_name"
+                    autocomplete="given-name"
+                    class="ml-2 bg-transparent outline-none w-[76%]">
                 </div>
 
-                <div class="my-2">
-                    <label for="last_name" class="sr-only">Last name</label>
+                <div class="my-2 flex bg-white relative rounded py-2 px-3">
+                    <label for="last_name" class="w-[20%] text-gray-500 text-xs flex border-r-2">
+                        <span class="m-auto ml-0">Last name</span>
+                    </label>
                     <input type="text"
-                        name="customer[last_name]"
-                        id="last_name"
-                        autocomplete="family-name"
-                        class="relative block w-full px-3 py-2 border outline-none rounded-lg"
-                        placeholder="Last name"
-                    >
+                    name="customer[last_name]"
+                    id="last_name"
+                    autocomplete="family-name"
+                    class="ml-2 bg-transparent outline-none w-[76%]">
                 </div>
 
-                <div class="my-2">
-                    <label for="birthday" class="sr-only">Birthday</label>
+                <div class="my-2 flex bg-white relative rounded py-2 px-3">
+                    <label for="birthday" class="w-[20%] text-gray-500 text-xs flex border-r-2">
+                        <span class="m-auto ml-0">Birthday</span>
+                    </label>
                     <input type="date"
-                        name="customer[note][Birthday]"
-                        id="birthday"
-                        class="relative block w-full px-3 py-2 border outline-none rounded-lg"
-                    >
+                    name="customer[note][Birthday]"
+                    id="birthday"
+                    class="ml-2 bg-transparent outline-none w-[76%]">
                 </div>
 
-                <div class="my-2">
-                    <label for="email_address" class="sr-only">Email address</label>
+                <div class="my-2 flex bg-white relative rounded py-2 px-3">
+                    <label for="email_address" class="w-[20%] text-gray-500 text-xs flex border-r-2">
+                        <span class="m-auto ml-0">Email</span>
+                    </label>
                     <input type="email"
-                        name="customer[email]"
-                        id="email_address"
-                        autocomplete="email"
-                        class="relative block w-full px-3 py-2 border outline-none rounded-lg"
-                        placeholder="Email address"
-                    >
+                    name="customer[email]"
+                    id="email_address"
+                    class="ml-2 bg-transparent outline-none w-[76%]">
                 </div>
 
 
-                <div class="my-2">
-                    <label for="password" class="sr-only">Password</label>
+                <div class="my-2 flex bg-white relative rounded py-2 px-3">
+                    <label for="password" class="w-[20%] text-gray-500 text-xs flex border-r-2">
+                        <span class="m-auto ml-0">Password</span>
+                    </label>
                     <input type="password"
-                        name="customer[password]"
-                        id="password"
-                        autocomplete="new-password"
-                        class="relative block w-full px-3 py-2 border outline-none rounded-lg"
-                        placeholder="Password"
-                    >
+                    name="customer[password]"
+                    id="password"
+                    class="ml-2 bg-transparent outline-none w-[76%]">
                 </div>
-
                 <div>
                     <button type="submit" class="relative w-full py-2 px-4 text-sm font-medium text-white bg-blue-500  hover:bg-blue-600 rounded-full">
                         Create account
