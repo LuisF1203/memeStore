@@ -1,26 +1,54 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
-    "sections": {
-        "banner-collection": {
-            "type": "banner-collection",
-            "settings": {
-                "banner_collection": "all"
-            }
-        },
-        "featured-collection": {
-            "type": "featured-collection",
-            "settings": {
-                "featured_collection": "all"
-            }
-        },
-        "template-footer": {
-            "type": "template-footer",
-            "settings": {
-                "template-footer": "all"
-            }
-        }
-
+  "sections": {
+    "banner-collection": {
+      "type": "banner-collection",
+      "settings": {
+        "title": "hola",
+        "subtitle": "hola",
+        "text": "",
+        "txtBtn": "",
+        "video": "shopify:\/\/files\/videos\/Bob Esponja y Patricio corriendo y Patricio explota (Meme).mp4",
+        "collection": ""
+      }
     },
-    
-    "order": ["banner-collection","featured-collection","template-footer"]
-    
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "New",
+        "subtitle": "",
+        "featured_collection": "all",
+        "number_of_products_to_show": 4
+      }
+    },
+    "template-footer": {
+      "type": "template-footer",
+      "settings": {
+        "title": "Footer Title",
+        "menu": "main-menu",
+        "twitter": "Footer Twitter",
+        "facebook": "Footer Facebook",
+        "pinterest": "Footer Pinterest",
+        "instagram": "Footer Instagram",
+        "tiktok": "Footer Tiktok",
+        "tumblr": "Footer Tumblr",
+        "snapchat": "Footer Snapchat",
+        "youtube": "Footer Yutube",
+        "vimeo": "Footer Vimeo"
+      }
+    }
+  },
+  "order": [
+    "banner-collection",
+    "featured-collection",
+    "template-footer"
+  ]
 }
