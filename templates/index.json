@@ -9,6 +9,15 @@
 */
 {
   "sections": {
+    "loader_EikWjN": {
+      "type": "loader",
+      "settings": {
+        "shopname": true,
+        "bgColor": "#ffffff",
+        "textColor": "",
+        "number": 1500
+      }
+    },
     "banner-collection": {
       "type": "banner-collection",
       "settings": {
@@ -47,6 +56,7 @@
     }
   },
   "order": [
+    "loader_EikWjN",
     "banner-collection",
     "featured-collection",
     "template-footer"
