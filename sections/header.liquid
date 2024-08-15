@@ -68,10 +68,15 @@
                     <button x-on:click="searchBarOpen = true" type="button" class="hidden md:block whitespace-nowrap text-base hover:opacity-75" >
                         {% render 'icon-search' %}
                     </button>
-                    <div class="hidden md:block">
+                    <div class="hidden md:flex gap-2">
                         {% if shop.customer_accounts_enabled %}
                             {% if customer %}
-                                <a href="{{ routes.account_url }}" class="text-base hover:opacity-75" >account</a>
+                                <a href="{{ routes.account_url }}" class="text-base flex hover:opacity-75" >
+                                    <span class="w-5 block m-auto">
+                                        {% render 'icon-account' %}
+                                    </span>
+
+                                </a>
                                 <span>/</span>
                                 {{ 'Log out' | customer_logout_link | replace: '<a', '<a class="text text-base hover:opacity-75"' }}
                             {% else %}
@@ -169,7 +174,7 @@
 
                         <!-- NAVIGATION LINKS FOR MOBILE MENU -->
                         <div class="pt-3 h-[60%] flex justify-center">
-                            <nav class="grid gap-y-7 overflow-auto h-[70%] m-auto">
+                            <nav class="grid gap-y-7 overflow-auto h-[70%] m-auto overflow-x-hidden w-auto">
                                 {% for link in main_menu_linklist %}
                                     {% if link.links != blank %}
                                     {% assign mobile_link_handle = link.handle | replace: '-', '_' %}
@@ -189,7 +194,7 @@
                                         </div>
 
                                     {% else %}
-                                        <a href="{{ link.url }}" class="m-auto p-3 text-center text-2xl font-bold opacity-50 hover:opacity-100 hover:scale-150 duration-300 rounded-md text-white">
+                                        <a href="{{ link.url }}" class="m-auto p-3 text-center text-2xl font-bold opacity-50 hover:opacity-100 hover:scale-110 duration-300 rounded-md text-white">
                                             {{ link.title }}
                                         </a>
 
