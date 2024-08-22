@@ -4,8 +4,8 @@
         <h1 class="animate-pulse text-5xl" 
             style="color: {{ section.settings.textColor  }};">{{ shop.name }}</h1>
         {% else %}
-        <img class="w-[20%]"
-        src="{{ section.settings.logo | image_url: width: 960 }}"
+        <img class="animate-pulse "
+        src="{{ section.settings.logo | image_url: width: 100 }}"
         width="{{ item.width }}"
         height="{{ item.height }}"
         loading="lazy"

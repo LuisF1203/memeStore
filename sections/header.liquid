@@ -33,7 +33,7 @@
 <!--{{ section.settings.main_text_color }}-->
 <!--{{ section.settings.options_text_color }}-->
 
-<h1 class="absoulte top-0 left-0 right-0 z-10 text-sm text-center font-bold" style="font-family: Arial, sans-serif; color:white;">{{ section.settings.bundle_text }}</h1>
+<h1 class="absoulte top-0 left-0 right-0 z-10 text-sm text-center font-bold " style="font-family: Arial, sans-serif; color:white; background:{{section.settings.bundle_main_color}} ">{{ section.settings.bundle_text }}</h1>
 <div class="absoulte top-6 left-0 right-0 z-10 " style="color:white;" x-data="{ mobileMenuOpen: false, searchBarOpen: false }" x-cloak>
     <div class="mx-auto">
         <div class="flex justify-center items-center py-6 md:justify-center">
@@ -48,9 +48,24 @@
             <!-- STORE NAME / STORE LOGO -->
             <div class="">
                 
-                <h1>
-                    <a href="/" class="md:text-4xl text-2xl font-bold truncate">{{ shop.name }}</a>
-                </h1>
+
+                {% if section.settings.logo %}
+                    <img class="truncate"
+                    src="{{ section.settings.logo | image_url: width: 50 }}"
+                    width="{{ item.width }}"
+                    height="{{ item.height }}"
+                    loading="lazy"
+                    alt="{{ item.title | escape }}"> 
+                    
+                    {% else %}
+                    <h1>
+                        <a href="/" class="md:text-4xl text-2xl font-bold truncate">{{ shop.name }}</a>
+                    </h1>
+                {% endif %}
+
+
+
+
                 <!-- NAVIGATION MENU 
                 
                 <nav class="hidden ml-32 md:flex space-x-10">
@@ -235,6 +250,11 @@
 {
     "name": "Header",
     "settings": [
+        {
+            "type": "image_picker",
+            "label": "Logo",
+            "id": "logo"
+        },
         {
             "type": "text",
             "id": "mobile_menu_title",

@@ -1,0 +1,36 @@
+<div class="flex p-12 gap-5 bg-black">
+    <img class="w-[20%]"
+    src="{{ section.settings.image | image_url: width: 960 }}"
+    width="{{ item.width }}"
+    height="{{ item.height }}"
+    loading="lazy"
+    alt="{{ item.title | escape }}"> 
+    <p class="text-justify text-white">{{ section.settings.text }}</p>
+</div>
+
+
+
+
+{% schema %}
+    {
+        "name": "About Banner",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "image"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "text"
+            }
+
+        ],
+        "presets": [
+            {
+                "name": "About Banner"
+            }
+        ]
+    }
+{% endschema %}

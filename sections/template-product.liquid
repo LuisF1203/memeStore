@@ -101,7 +101,23 @@
                             {% else %}
                             
 
-
+                            <script>
+                                function handleClick(event) {
+                                    event.preventDefault();
+                                    const clickedValue = event.target.value;
+                            
+                                    // Seleccionar todos los elementos con la clase "size-button"
+                                    document.querySelectorAll(".size-button").forEach(el => {
+                                        if (clickedValue === el.value) {
+                                            el.style.color = "red";
+                                            el.classList.add("selected"); // Agregar la clase "selected"
+                                        } else {
+                                            el.style.color = "black";
+                                            el.classList.remove("selected"); // Remover la clase "selected"
+                                        }
+                                    });
+                                }
+                            </script>
 
                             {% when 'variant_selector' %}
                                 <div class="my-3">
@@ -109,30 +125,16 @@
                                         <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                                             {% for option in product.options_with_values %}
                                                 <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-
+                                
                                                 <div class="my-2">
-                                                    <select 
-                                                        name="options[{{ option.name | escape }}]" 
-                                                        id="Option-{{ section.id }}-{{ forloop.index0 }}" 
-                                                        class="w-full border py-3 px-3"
-                                                    >
-                                                        {% for value in option.values %}
-                                                            <option 
-                                                                value="{{ value | escape }}"
-                                                                {% if option.selected_value == value %}
-                                                                    selected="selected"
-                                                                {% endif %}
-                                                            >
-                                                                {{ value }}
-                                                            </option>
-                                                        {% endfor %}
-                                                    </select>
+                                                    {% for value in option.values %}
+                                                        <button class="size-button" onclick="handleClick(event)" value="{{ value | escape }}">{{ value }}</button>
+                                                    {% endfor %}
                                                 </div>
-
+                                
                                                 <script type="application/json">
                                                     {{ product.variants | json }}
                                                 </script>
-
                                             {% endfor %}
                                         </variant-selector>
                                     {% endunless %}
@@ -147,8 +149,24 @@
                                     </div>
                                 </div>
                             {% when 'description' %}
-                                <div class="my-3">
-                                    <p class="text-gray-700">{{ product.description }}</p>
+
+                                <style>
+                                    .custom-list ul {
+                                        list-style-type: disc;
+                                        margin-left: 1.5rem;
+                                    }
+                                    .custom-list ul li {
+                                        list-style-type: disc;
+                                        margin-left: 1.5rem;
+                                    }
+
+                                    .custom-list ol {
+                                        list-style-type: decimal;
+                                        margin-left: 1.5rem;
+                                    }
+                                </style>
+                                <div class="my-3 custom-list">
+                                    {{ product.description }}
                                 </div>
 
 
@@ -160,7 +178,7 @@
 
 
                 <div class="mt-10">
-                    <p class="text-sm">Tu compra es segura y protegida por: </p>
+                    <p class="text-sm">Formas de pago seguro y protegido por: </p>
                     <div class="pl-10 pr-10">
                         <div class="flex gap-2 justify-between mt-10">
                             {% render 'icon-amex' %}
@@ -218,22 +236,40 @@
     class VariantSelector extends HTMLElement {
         constructor() {
             super();
-            this.addEventListener("change", this.onVariantChange);
+            this.addEventListener("click", this.onVariantClick);
         }
 
-        onVariantChange() {
-            this.getSelectedOptions();
-            this.getSelectedVariant();
+        onVariantClick(event) {
+            // Solo manejar los clicks en los botones de tamaño
+            if (event.target.matches(".size-button")) {
+                this.handleSizeSelection(event.target);
+                this.getSelectedOptions();
+                this.getSelectedVariant();
 
-            if(this.currentVariant) {
-                this.updateURL();
-                this.updateFormID();
-                this.updatePrice();
+                if (this.currentVariant) {
+                    this.updateURL();
+                    this.updateFormID();
+                    this.updatePrice();
+                }
             }
         }
 
+        handleSizeSelection(selectedButton) {
+            // Remover la clase "selected" de todos los botones
+            this.querySelectorAll(".size-button").forEach(button => {
+                button.classList.remove("selected");
+                button.style.color = "black"; // Opcional: Cambia el estilo si es necesario
+            });
+
+            // Agregar la clase "selected" al botón seleccionado
+            selectedButton.classList.add("selected");
+            selectedButton.style.color = "red"; // Opcional: Cambia el estilo si es necesario
+        }
+
         getSelectedOptions() {
-            this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+            // Obtener las opciones seleccionadas
+            this.options = Array.from(this.querySelectorAll(".size-button.selected"), button => button.value);
+            console.log(document.querySelector(".size-button.selected"));
             console.log(this.options);
         }
 
@@ -243,23 +279,21 @@
         }
 
         getSelectedVariant() {
-            this.currentVariant = this.getVariantJSON().find(
-                (variant) => {
-                    const findings = !variant.options.map(
-                        (option, index) => {
-                            return this.options[index] === option;
-                        }
-                    ).includes(false);
+            this.currentVariant = this.getVariantJSON().find(variant => {
+                const findings = !variant.options.map(
+                    (option, index) => {
+                        return this.options[index] === option;
+                    }
+                ).includes(false);
 
-                    if(findings) return variant;
-                }
-            );
+                if (findings) return variant;
+            });
 
             console.log(this.currentVariant);
         }
 
         updateURL() {
-            if(!this.currentVariant) return;
+            if (!this.currentVariant) return;
             window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
         }
 
@@ -270,21 +304,22 @@
 
         updatePrice() {
             fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
-            .then((response) => response.text())
-            .then((responseText) => {
+            .then(response => response.text())
+            .then(responseText => {
                 const id = `price-${this.dataset.section}`;
                 const html = new DOMParser().parseFromString(responseText, 'text/html');
 
                 const oldPrice = document.getElementById(id);
                 const newPrice = html.getElementById(id);
 
-                if(oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
+                if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
             });
         }
     }
 
     customElements.define("variant-selector", VariantSelector);
 </script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded',()=>{
