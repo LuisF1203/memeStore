@@ -1017,6 +1017,14 @@ video {
   height: 100vh;
 }
 
+.h-\[100vh\] {
+  height: 100vh;
+}
+
+.h-\[50vh\] {
+  height: 50vh;
+}
+
 .max-h-\[2000px\] {
   max-height: 2000px;
 }

@@ -50,12 +50,17 @@
                 
 
                 {% if section.settings.logo %}
-                    <img class="truncate"
-                    src="{{ section.settings.logo | image_url: width: 50 }}"
-                    width="{{ item.width }}"
-                    height="{{ item.height }}"
-                    loading="lazy"
-                    alt="{{ item.title | escape }}"> 
+
+                    <a href="/">
+                        <img class="truncate"
+                        src="{{ section.settings.logo | image_url: width: 50 }}"
+                        width="{{ item.width }}"
+                        height="{{ item.height }}"
+                        loading="lazy"
+                        alt="{{ item.title | escape }}"> 
+                    </a>
+
+
                     
                     {% else %}
                     <h1>
