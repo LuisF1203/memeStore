@@ -1,107 +1,123 @@
 <link rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css">
-<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js" defer></script>
 
 {% assign selected_variant = product.selected_or_first_available_variant %}
 <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 
 <style>
-    /*
-    .swiper-button-prev, .swiper-button-next { color: black; top: auto !important; height: 20px; }
-    .swiper-button-prev::after, .swiper-button-next::after { font-size: 20px; }
-    .swiper-pagination { color: black; bottom: 0 !important; }
-    .swiper-pagination-bullet-active { background: black !important; }*/
-    .product--information { height: fit-content; }
-    #main-nav{
-        background: rgba(0, 0, 0, 0.9) !important;
-    }
+
+
+  /*
+
+   .swiper-button-prev, .swiper-button-next { color: black; top: auto !important; height: 20px; } 
+   .swiper-button-prev::after, .swiper-button-next::after { font-size: 20px; } 
+   .swiper-pagination { color: black; bottom: 0 !important; } 
+   .swiper-pagination-bullet-active { background: black !important; }
+*/
+  .product--information {
+    height: fit-content;
+  }
+  #main-nav {
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
 </style>
 
 <div x-data="{ productModelModalOpen: false }">
 
-    <div class="max-w-6xl mx-auto my-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="product--medias">
-                <div class="hidden md:block">
-                    {% for media in product.media %}
-                        <div class="h-100 overflow-hidden p-2">
-                            {% render 'product-media', media: media %}
-                        </div>
-                    {% endfor %}
+  <div class="max-w-6xl mx-auto my-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="product--medias">
+        <div class="hidden md:block">
+          {% for media in product.media %}
+            <div class="h-100 overflow-hidden p-2">
+              {% render 'product-media'
+                , media: media %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="md:hidden">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              {% for media in product.media %}
+                <div class="swiper-slide">
+                  <div class="h-[100vw] overflow-hidden p-2">
+                    {% render 'product-media'
+                      , media: media %}
+                  </div>
                 </div>
-
-                <div class="md:hidden">
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            {% for media in product.media %}
-                                <div class="swiper-slide">
-                                    <div class="h-[100vw] overflow-hidden p-2">
-                                        {% render 'product-media', media: media %}
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <div class="swiper-pagination"></div>
-
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-                </div>
+              {% endfor %}
             </div>
 
-            <div class="product--information sticky top-5 p-2">
-                {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-                    <input type="hidden" name="id" value="{{ selected_variant.id }}">
+            <div class="swiper-pagination"></div>
 
-                    {% for block in section.blocks %}
-                        {% case block.type %}
-                            {% when 'vendor' %}
-                                <div class="my-3">
-                                    <span class="text-xs text-gray-500">{{ product.vendor }}</span>
-                                </div>
-                            {% when 'title' %}
-                                <div class="my-3">
-                                    <h1 class="text-5xl text-gray-900">{{ product.title }}</h1>
-                                </div>
-                                <div class="flex gap-1">
-                                    <p>{% render 'icon-star' %}</p>
-                                    <p>{% render 'icon-star' %}</p>
-                                    <p>{% render 'icon-star' %}</p>
-                                    <p>{% render 'icon-star' %}</p>
-                                    <p>{% render 'icon-star' %}</p>
-                                </div>
-                            {% when 'price' %}
-                                <div class="my-3" id="price-{{ section.id }}">
-                                    <span class="text-base text-gray-500 line-through">{{ selected_variant.compare_at_price | money }}</span>
-                                    <span class="text-lg text-gray-900">{{ selected_variant.price | money }}</span>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
 
-                                    {% if selected_variant.price < selected_variant.compare_at_price %}
-                                        <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
-                                    {% endif %}
-                                </div>
+      <div class="product--information sticky top-5 p-2">
+        {% form 'product'
+          , product
+          , id: 'product-form'
+          , novalidate: 'novalidate' %}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ selected_variant.id }}">
 
-                                
-                            {% when 'checkout_buttons' %}
-                                <div class="my-3">
-                                    <button type="submit" name="add" class="justify-center w-full px-6 py-4 bg-black text-white hover:scale-[101%] rounded-sm my-2 flex"
-                                        {% if selected_variant.available == false %}
-                                            disabled
-                                        {% endif %}
-                                    >
-                                        {% if selected_variant.available == false %}
-                                            Sin Stock
-                                        {% else %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'vendor' %}
+                <div class="my-3">
+                  <span class="text-xs text-gray-500">{{ product.vendor }}</span>
+                </div>
+              {% when 'title' %}
+                <div class="my-3">
+                  <h1 class="text-5xl text-gray-900">{{ product.title }}</h1>
+                </div>
+                <div class="flex gap-1">
+                  <p>{% render 'icon-star' %}</p>
+                  <p>{% render 'icon-star' %}</p>
+                  <p>{% render 'icon-star' %}</p>
+                  <p>{% render 'icon-star' %}</p>
+                  <p>{% render 'icon-star' %}</p>
+                </div>
+              {% when 'price' %}
+                <div class="my-3" id="price-{{ section.id }}">
+                  <span class="text-base text-gray-500 line-through">{{ selected_variant.compare_at_price | money }}</span>
+                  <span class="text-lg text-gray-900">{{ selected_variant.price | money }}</span>
 
-                                            <span class="mt-auto mb-auto mr-5">Agregar al carrito</span>
-                                            <span class="mt-auto mb-auto ">{% render 'icon-shopping-cart' %}</span>
-                                        {% endif %}
-                                    </button>
-                                </div>
-                            {% else %}
-                            
+                  {% if selected_variant.price < selected_variant.compare_at_price %}
+                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
+                  {% endif %}
+                </div>
 
-                            <script>
+
+              {% when 'checkout_buttons' %}
+                <div class="my-3">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="justify-center w-full px-6 py-4 bg-black text-white hover:scale-[101%] rounded-sm my-2 flex"
+                    {% if selected_variant.available == false %}
+                    disabled
+                    {% endif %}>
+                    {% if selected_variant.available == false %}
+                      Sin Stock
+                    {% else %}
+
+                      <span class="mt-auto mb-auto mr-5">Agregar al carrito</span>
+                      <span class="mt-auto mb-auto ">{% render 'icon-shopping-cart' %}</span>
+                    {% endif %}
+                  </button>
+                </div>
+              {% else %}
+
+
+                <script>
                                 function handleClick(event) {
                                     event.preventDefault();
                                     const clickedValue = event.target.value;
@@ -117,119 +133,136 @@
                                         }
                                     });
                                 }
-                            </script>
+                </script>
 
-                            {% when 'variant_selector' %}
-                                <div class="my-3">
-                                    {% unless product.has_only_default_variant %}
-                                        <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-                                            {% for option in product.options_with_values %}
-                                                <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-                                
-                                                <div class="my-2">
-                                                    {% for value in option.values %}
-                                                        <button class="size-button" onclick="handleClick(event)" value="{{ value | escape }}">{{ value }}</button>
-                                                    {% endfor %}
-                                                </div>
-                                
-                                                <script type="application/json">
-                                                    {{ product.variants | json }}
-                                                </script>
-                                            {% endfor %}
-                                        </variant-selector>
-                                    {% endunless %}
-                                </div>
+              {% when 'variant_selector' %}
+                <div class="my-3">
+                  {% unless product.has_only_default_variant %}
+                    <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                      {% for option in product.options_with_values %}
+                        <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
 
-                            {% when 'quantity' %}
-                                <div class="my-3">
-                                    <label for="Quantity-{{ section.id }}">Quantity</label>
-
-                                    <div class="my-2">
-                                        <input type="number" name="quantity" id="Quantity-{{ section.id }}" value="1" min="1" class="w-full border px-3 py-3">
-                                    </div>
-                                </div>
-                            {% when 'description' %}
-
-                                <style>
-                                    .custom-list ul {
-                                        list-style-type: disc;
-                                        margin-left: 1.5rem;
-                                    }
-                                    .custom-list ul li {
-                                        list-style-type: disc;
-                                        margin-left: 1.5rem;
-                                    }
-
-                                    .custom-list ol {
-                                        list-style-type: decimal;
-                                        margin-left: 1.5rem;
-                                    }
-                                </style>
-                                <div class="my-3 custom-list">
-                                    {{ product.description }}
-                                </div>
-
-
-                                
-                        {% endcase %}
-                    {% endfor %}
-                {% endform %}
-
-
-
-                <div class="mt-10">
-                    <p class="text-sm">Formas de pago seguro y protegido por: </p>
-                    <div class="pl-10 pr-10">
-                        <div class="flex gap-2 justify-between mt-10">
-                            {% render 'icon-amex' %}
-                            {% render 'icon-applepay' %}
-                            {% render 'icon-googlepay' %}
-                            {% render 'icon-mastercard' %}
-                            {% render 'icon-visa' %}
+                        <div class="my-2">
+                          {% for value in option.values %}
+                            <button
+                              class="size-button"
+                              onclick="handleClick(event)"
+                              value="{{ value | escape }}">{{ value }}</button>
+                          {% endfor %}
                         </div>
-                    </div>
 
+                        <script type="application/json">
+                          {{ product.variants | json }}
+                        </script>
+                      {% endfor %}
+                    </variant-selector>
+                  {% endunless %}
+                </div>
+
+              {% when 'quantity' %}
+                <div class="my-3">
+                  <label for="Quantity-{{ section.id }}">Quantity</label>
+
+                  <div class="my-2">
+                    <input
+                      type="number"
+                      name="quantity"
+                      id="Quantity-{{ section.id }}"
+                      value="1"
+                      min="1"
+                      class="w-full border px-3 py-3">
+                  </div>
+                </div>
+              {% when 'description' %}
+
+                <style>
+                  .custom-list ul {
+                    list-style-type: disc;
+                    margin-left: 1.5rem;
+                  }
+                  .custom-list ul li {
+                    list-style-type: disc;
+                    margin-left: 1.5rem;
+                  }
+
+                  .custom-list ol {
+                    list-style-type: decimal;
+                    margin-left: 1.5rem;
+                  }
+                </style>
+                <div class="my-3 custom-list">
+                  {{ product.description }}
                 </div>
 
 
+            {% endcase %}
+          {% endfor %}
+        {% endform %}
+
+
+        <div class="mt-10">
+          <p class="text-sm">Formas de pago seguro y protegido por:
+          </p>
+          <div class="pl-10 pr-10">
+            <div class="flex gap-2 justify-between mt-10">
+              {% render 'icon-amex' %}
+              {% render 'icon-applepay' %}
+              {% render 'icon-googlepay' %}
+              {% render 'icon-mastercard' %}
+              {% render 'icon-visa' %}
             </div>
+          </div>
+
         </div>
+
+
+      </div>
     </div>
+  </div>
 
-    <style>
-        .media model-viewer, .media > *{
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-        }
-    </style>
-    <div id="productModelModal">
-        <div x-show="productModelModalOpen" class="w-full h-full z-50 items-center fixed inset-0">
-            <div class="relative w-full h-full bg-white">
-                <div class="relative">
-                    <div class="flex justify-between items-start p-5 border-b">
-                        <h2 class="text-xl font-bold text-gray-700">{{ product.title }}</h2>
-                        <button x-on:click="productModelModalOpen = false" class="text-gray-400 bg-transparent hover:text-gray-700 rounded text-sm p-2 ml-auto inline-flex items-center">
-                            {% render 'icon-close' %}
-                        </button>
-                    </div>
+  <style>
+    .media model-viewer,
+    .media > * {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <div id="productModelModal">
+    <div x-show="productModelModalOpen" class="w-full h-full z-50 items-center fixed inset-0">
+      <div class="relative w-full h-full bg-white">
+        <div class="relative">
+          <div class="flex justify-between items-start p-5 border-b">
+            <h2 class="text-xl font-bold text-gray-700">{{ product.title }}</h2>
+            <button x-on:click="productModelModalOpen = false" class="text-gray-400 bg-transparent hover:text-gray-700 rounded text-sm p-2 ml-auto inline-flex items-center">
+              {% render 'icon-close' %}
+            </button>
+          </div>
 
-                    <div id="body" class="media block relative" style="padding-top: min(calc(100vh - 5rem), 100%);">
-
-                    </div>
-                </div>
-            </div>
+          <div
+            id="body"
+            class="media block relative"
+            style="padding-top: min(calc(100vh - 5rem), 100%);"></div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-
-
-
-
+<!-- Start of Judge.me code -->
+<div style='clear:both'></div>
+<div
+  id='judgeme_product_reviews'
+  class='jdgm-widget jdgm-review-widget'
+  data-product-title='{{ product.title | escape }}'
+  data-id='{{ product.id }}'
+  data-auto-install='false'>
+  {{ product.metafields.judgeme.widget }}
+</div>
+<!-- End of Judge.me code -->
 
 
 <script>
@@ -238,14 +271,14 @@
             super();
             this.addEventListener("click", this.onVariantClick);
         }
-
+  
         onVariantClick(event) {
             // Solo manejar los clicks en los botones de tamaño
             if (event.target.matches(".size-button")) {
                 this.handleSizeSelection(event.target);
                 this.getSelectedOptions();
                 this.getSelectedVariant();
-
+  
                 if (this.currentVariant) {
                     this.updateURL();
                     this.updateFormID();
@@ -253,31 +286,31 @@
                 }
             }
         }
-
+  
         handleSizeSelection(selectedButton) {
             // Remover la clase "selected" de todos los botones
             this.querySelectorAll(".size-button").forEach(button => {
                 button.classList.remove("selected");
                 button.style.color = "black"; // Opcional: Cambia el estilo si es necesario
             });
-
+  
             // Agregar la clase "selected" al botón seleccionado
             selectedButton.classList.add("selected");
             selectedButton.style.color = "red"; // Opcional: Cambia el estilo si es necesario
         }
-
+  
         getSelectedOptions() {
             // Obtener las opciones seleccionadas
             this.options = Array.from(this.querySelectorAll(".size-button.selected"), button => button.value);
             console.log(document.querySelector(".size-button.selected"));
             console.log(this.options);
         }
-
+  
         getVariantJSON() {
             this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
             return this.variantData;
         }
-
+  
         getSelectedVariant() {
             this.currentVariant = this.getVariantJSON().find(variant => {
                 const findings = !variant.options.map(
@@ -285,38 +318,38 @@
                         return this.options[index] === option;
                     }
                 ).includes(false);
-
+  
                 if (findings) return variant;
             });
-
+  
             console.log(this.currentVariant);
         }
-
+  
         updateURL() {
             if (!this.currentVariant) return;
             window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
         }
-
+  
         updateFormID() {
             const form_input = document.querySelector("#product-form").querySelector('input[name="id"]');
             form_input.value = this.currentVariant.id;
         }
-
+  
         updatePrice() {
             fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
             .then(response => response.text())
             .then(responseText => {
                 const id = `price-${this.dataset.section}`;
                 const html = new DOMParser().parseFromString(responseText, 'text/html');
-
+  
                 const oldPrice = document.getElementById(id);
                 const newPrice = html.getElementById(id);
-
+  
                 if (oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
             });
         }
     }
-
+  
     customElements.define("variant-selector", VariantSelector);
 </script>
 
@@ -326,11 +359,11 @@
         try{
             const swiper = new Swiper('.swiper', {
                 direction: 'horizontal',
-
+  
                 pagination: {
                     el: '.swiper-pagination'
                 },
-
+  
                 navigation: {
                     prevEl: '.swiper-button-prev',
                     nextEl: '.swiper-button-next'
@@ -339,51 +372,46 @@
         }catch(e){
             console.log("SwiperJs is not defined",e);
         }
-
+  
     })
-
-
 </script>
 
 {% schema %}
-{
+  {
     "name": "Product",
     "blocks": [
-        {
-            "type": "vendor",
-            "name": "Vendor",
-            "limit": 1
-        },
-        {
-            "type": "title",
-            "name": "Title",
-            "limit": 1
-        },
-        {
-            "type": "price",
-            "name": "Price",
-            "limit": 1
-        },
-        {
-            "type": "checkout_buttons",
-            "name": "Checkout Buttons",
-            "limit": 1
-        },
-        {
-            "type": "variant_selector",
-            "name": "Variant Selector",
-            "limit": 1
-        },
-        {
-            "type": "quantity",
-            "name": "Quantity",
-            "limit": 1
-        },
-        {
-            "type": "description",
-            "name": "Description",
-            "limit": 1
-        }
+      {
+        "type": "vendor",
+        "name": "Vendor",
+        "limit": 1
+      },
+      {
+        "type": "title",
+        "name": "Title",
+        "limit": 1
+      },
+      {
+        "type": "price",
+        "name": "Price",
+        "limit": 1
+      },
+      {
+        "type": "checkout_buttons",
+        "name": "Checkout Buttons",
+        "limit": 1
+      }, {
+        "type": "variant_selector",
+        "name": "Variant Selector",
+        "limit": 1
+      }, {
+        "type": "quantity",
+        "name": "Quantity",
+        "limit": 1
+      }, {
+        "type": "description",
+        "name": "Description",
+        "limit": 1
+      }
     ]
-}
+  }
 {% endschema %}

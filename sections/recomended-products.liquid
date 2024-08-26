@@ -1,0 +1,45 @@
+<div class="border pt-10 text-white" style="background:{{ section.settings.background }}">
+  {% paginate section.settings.collection.products by section.settings.number_of_products_per_page %}
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-3xl pl-4">{{ section.settings.collection.title }}</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for product in section.settings.collection.products %}
+          {% render 'product-card'
+            , product_product: product %}
+        {% else %}
+          <p>There are no products inside of this collection</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% render 'pagination'
+      , pagination: paginate %}
+  {% endpaginate %}
+</div>
+
+{% schema %}
+  {
+    "name": "productos recomendados",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Colección"
+      }, {
+        "type": "number",
+        "id": "number_of_products_per_page",
+        "default": 3,
+        "label": "Number of products per page"
+      }, {
+        "type": "color_background",
+        "id": "background",
+        "label": "background"
+      }
+    ],
+    "presets": [
+      {
+        "name": "recomended products"
+      }
+    ]
+
+  }
+{% endschema %}
