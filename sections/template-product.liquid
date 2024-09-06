@@ -78,20 +78,14 @@
                 <div class="my-3">
                   <h1 class="text-5xl text-gray-900">{{ product.title }}</h1>
                 </div>
-                <div class="flex gap-1">
-                  <p>{% render 'icon-star' %}</p>
-                  <p>{% render 'icon-star' %}</p>
-                  <p>{% render 'icon-star' %}</p>
-                  <p>{% render 'icon-star' %}</p>
-                  <p>{% render 'icon-star' %}</p>
-                </div>
+
               {% when 'price' %}
                 <div class="my-3" id="price-{{ section.id }}">
                   <span class="text-base text-gray-500 line-through">{{ selected_variant.compare_at_price | money }}</span>
                   <span class="text-lg text-gray-900">{{ selected_variant.price | money }}</span>
 
                   {% if selected_variant.price < selected_variant.compare_at_price %}
-                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
+                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Oferta</span>
                   {% endif %}
                 </div>
 
@@ -125,10 +119,10 @@
                                     // Seleccionar todos los elementos con la clase "size-button"
                                     document.querySelectorAll(".size-button").forEach(el => {
                                         if (clickedValue === el.value) {
-                                            el.style.color = "red";
+                                            el.style.background = "red";
                                             el.classList.add("selected"); // Agregar la clase "selected"
                                         } else {
-                                            el.style.color = "black";
+                                            el.style.background = "black";
                                             el.classList.remove("selected"); // Remover la clase "selected"
                                         }
                                     });
@@ -141,11 +135,10 @@
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-
                         <div class="my-2">
                           {% for value in option.values %}
                             <button
-                              class="size-button"
+                              class="size-button hover:scale-150 transition-transform bg-black w-10 text-white"
                               onclick="handleClick(event)"
                               value="{{ value | escape }}">{{ value }}</button>
                           {% endfor %}
@@ -161,7 +154,7 @@
 
               {% when 'quantity' %}
                 <div class="my-3">
-                  <label for="Quantity-{{ section.id }}">Quantity</label>
+                  <label for="Quantity-{{ section.id }}">Cantidad</label>
 
                   <div class="my-2">
                     <input
@@ -291,12 +284,12 @@
             // Remover la clase "selected" de todos los botones
             this.querySelectorAll(".size-button").forEach(button => {
                 button.classList.remove("selected");
-                button.style.color = "black"; // Opcional: Cambia el estilo si es necesario
+                button.style.color = "white"; // Opcional: Cambia el estilo si es necesario
             });
   
             // Agregar la clase "selected" al botón seleccionado
             selectedButton.classList.add("selected");
-            selectedButton.style.color = "red"; // Opcional: Cambia el estilo si es necesario
+            selectedButton.style.color = "white"; // Opcional: Cambia el estilo si es necesario
         }
   
         getSelectedOptions() {
