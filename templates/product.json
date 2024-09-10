@@ -1,26 +1,90 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
-      "template": {
-          "type": "template-product",
-          "blocks": {
-              "vendor": { "type": "vendor" },
-              "title": { "type": "title" },
-              "price": { "type": "price" },
-              "variant_selector": { "type": "variant_selector" },
-              "quantity": { "type": "quantity" },
-              "description": { "type": "description" },
-              "checkout_buttons": { "type": "checkout_buttons" }
-          },
-          "block_order": [
-              "vendor",
-              "title",
-              "price",
-              "variant_selector",
-              "quantity",
-              "description",
-              "checkout_buttons"
-          ]
+    "template": {
+      "type": "template-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+          }
+        },
+        "quantity": {
+          "type": "quantity",
+          "settings": {
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "checkout_buttons": {
+          "type": "checkout_buttons",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_selector",
+        "quantity",
+        "description",
+        "checkout_buttons"
+      ],
+      "settings": {
       }
+    },
+    "1725994557b294464c": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_tEqAWA": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        },
+        "judge_me_reviews_featured_carousel_NVmWgV": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/featured_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_tEqAWA",
+        "judge_me_reviews_featured_carousel_NVmWgV"
+      ],
+      "settings": {
+      }
+    }
   },
-  "order": ["template"]
+  "order": [
+    "template",
+    "1725994557b294464c"
+  ]
 }
