@@ -1,3 +1,12 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "current": {
     "custom_favicon": "shopify:\/\/shop_images\/mini_f724d00f-3c79-47fe-825d-c8a60ab93ada.png",
@@ -17,55 +26,15 @@
           "bundle_text": "Envios Gratis",
           "main_color": "#ffffff",
           "main_text_color": "#000000",
-          "bundle_main_color": "#ffffff",
-          "bundle_text_color": "#000000",
+          "bundle_main_color": "#ff0000",
+          "bundle_text_color": "#ff0000",
           "options_text_color": "#000000"
         }
       }
     },
     "content_for_index": [
 
-    ],
-    "blocks": {
-      "15683396631634586217": {
-        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
-        "disabled": false,
-        "settings": {
-          "button_color": "#000000",
-          "secondary_color": "#FFFFFF",
-          "ternary_color": "#000000",
-          "button_icon": "chat_bubble",
-          "button_text": "chat_with_us",
-          "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "👋 ¡Hola! ¿Necesitas ayuda? ¡Estamos aquí para ti! Contáctanos para encontrar la talla perfecta o resolver cualquier pregunta que tengas. Explora nuestra colección y deja que tu estilo fluya con facilidad. ¡Gracias por elegirnos! ❤️‍🔥"
-        }
-      },
-      "2965712708760319418": {
-        "type": "shopify:\/\/apps\/proof-bear-sales-popup\/blocks\/widget\/6e90b7fd-96ea-488b-9571-34f0c382838a",
-        "disabled": false,
-        "settings": {
-        }
-      },
-      "2118589882331710876": {
-        "type": "shopify:\/\/apps\/essential-trust-badges\/blocks\/app-embed\/0ff65b25-07e1-408e-950f-f54dd3d1751b",
-        "disabled": false,
-        "settings": {
-        }
-      },
-      "12657775114333427046": {
-        "type": "shopify:\/\/apps\/essential-countdown\/blocks\/app_embed\/722378e8-5a70-4eae-aa89-9e44e8e9f6de",
-        "disabled": false,
-        "settings": {
-        }
-      },
-      "5620774697883608619": {
-        "type": "shopify:\/\/apps\/avada-seo-suite\/blocks\/avada-seo\/15507c6e-1aa3-45d3-b698-7e175e033440",
-        "disabled": false,
-        "settings": {
-        }
-      }
-    }
+    ]
   },
   "presets": {
     "main": {
