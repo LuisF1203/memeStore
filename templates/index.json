@@ -43,15 +43,15 @@
       "settings": {
         "title": "Footer Title",
         "menu": "main-menu",
-        "twitter": "Footer Twitter",
-        "facebook": "Footer Facebook",
-        "pinterest": "Footer Pinterest",
-        "instagram": "Footer Instagram",
-        "tiktok": "Footer Tiktok",
-        "tumblr": "Footer Tumblr",
-        "snapchat": "Footer Snapchat",
-        "youtube": "Footer Yutube",
-        "vimeo": "Footer Vimeo"
+        "twitter": "",
+        "facebook": "",
+        "pinterest": "",
+        "instagram": "https:\/\/www.instagram.com\/sociedad_meme_oficial\/",
+        "tiktok": "https:\/\/www.tiktok.com\/@sociedad_meme",
+        "tumblr": "",
+        "snapchat": "",
+        "youtube": "https:\/\/www.youtube.com\/@sociedadmeme",
+        "vimeo": ""
       }
     }
   },
