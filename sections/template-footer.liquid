@@ -15,69 +15,60 @@
 
 
     <div class="flex justify-center flex-col items-center">
-        <div class="mb-5 mt-2 gap-5 flex text-gray-500">
-            <a href="#" class="hover:underline" >Preguntas Frecuentes</a>
-            <a href="#" class="hover:underline" >Términos y Condiciones</a>
-            <a href="#" class="hover:underline" >Contácto</a>
-        </div>
+      <div class="mb-5 mt-2 gap-5 flex text-gray-500">
+        <a href="/pages/preguntas-frecuentes" class="hover:underline">Preguntas Frecuentes</a>
+        <a href="/pages/terminos-y-condiciones" class="hover:underline">Términos y Condiciones</a>
+        <a href="/pages/contact" class="hover:underline">Contácto</a>
+      </div>
 
       <div class="Sn-icons">
         <ul class="flex justify-around">
-          {% if section.settings.twitter != blank %}
+          {% if section.settings.twitter %}
             <li class="ml-4">
               <a href="{{ section.settings.twitter }}" target="_blank">{% render 'icon-twitter' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.facebook != blank %}
+          {% if section.settings.facebook %}
             <li class="ml-4">
               <a href="{{ section.settings.facebook }}" target="_blank">{% render 'icon-facebook' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.pinterest != blank %}
+          {% if section.settings.pinterest %}
             <li class="ml-4">
               <a href="{{ section.settings.pinterest }}" target="_blank">{% render 'icon-pinterest' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.instagram != blank %}
+          {% if section.settings.instagram %}
             <li class="ml-4">
               <a href="{{ section.settings.instagram }}" target="_blank">{% render 'icon-instagram' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.tiktok != blank %}
+          {% if section.settings.tiktok %}
             <li class="ml-4">
               <a href="{{ section.settings.tiktok }}" target="_blank">{% render 'icon-tiktok' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.tumblr != blank %}
+          {% if section.settings.tumblr %}
             <li class="ml-4">
               <a href="{{ section.settings.tumblr }}" target="_blank">{% render 'icon-tumblr' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.snapchat != blank %}
+          {% if section.settings.snapchat %}
             <li class="ml-4">
               <a href="{{ section.settings.snapchat }}" target="_blank">{% render 'icon-snapchat' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.youtube != blank %}
+          {% if section.settings.youtube %}
             <li class="ml-4">
               <a href="{{ section.settings.youtube }}" target="_blank">{% render 'icon-youtube' %}</a>
             </li>
           {% endif %}
-
-          {% if section.settings.vimeo != blank %}
+          {% if section.settings.vimeo %}
             <li class="ml-4">
               <a href="{{ section.settings.vimeo }}" target="_blank">{% render 'icon-vimeo' %}</a>
             </li>
           {% endif %}
         </ul>
-
       </div>
       <div class="mt-10 pay-icons">
         <ul class="flex">
@@ -93,7 +84,7 @@
 
   <!--
     <div>
-            <h3>Quick Links</h3>
+        <h3>Quick Links</h3>
               <div class="flex md:flex flex-col">
                   {% for link in main_menu_linklist %}
                       {% if link.links == blank %}
@@ -103,8 +94,6 @@
               </div>
           </div>
   -->
-
-  
   </div>
   <p class="text-center mt-5 text-gray-500 text-sm">© 2024, Sociedad Meme Store</p>
 </footer>

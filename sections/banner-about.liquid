@@ -1,36 +1,66 @@
-<div class="flex p-12 gap-5 bg-black">
-    <img class="w-[20%]"
-    src="{{ section.settings.image | image_url: width: 960 }}"
-    width="{{ item.width }}"
-    height="{{ item.height }}"
-    loading="lazy"
-    alt="{{ item.title | escape }}"> 
-    <p class="text-justify text-white">{{ section.settings.text }}</p>
+<div class="flex p-28 gap-28 bg-black">
+  <div class="relative group w-[80%] hover:scale-105 transition-all animate-pulse hover:animate-none">
+    <a
+      href="{{ section.settings.link }}"
+      target="_blank"
+      class="z-10 absolute top-0 left-0 right-0 bottom-0 bg-[#00000091] flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div class="fill-red-600 icon-youtube">
+        {% render "icon-youtube" %}
+      </div>
+    </a>
+    <img
+      class="w-full rounded-lg object-cover shadow-md transition-transform duration-300 group-hover:opacity-90"
+      src="https://img.youtube.com/vi/{{ section.settings.link | split: 'v=' | last | split: '?' | first | split: '/' | last }}/maxresdefault.jpg"
+      loading="lazy"
+      alt="{{ section.settings.title | escape }}">
+  </div>
+
+  <div class="text-gray-300 flex flex-col justify-center">
+    <h2 class="text-5xl font-bold mb-5 text-gradient">{{ section.settings.title }}</h2>
+    <div class="text-justify text-lg leading-relaxed">
+      {{ section.settings.text }}
+    </div>
+  </div>
 </div>
 
-
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #cecece, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .icon-youtube svg {
+    width: 60px;
+    height: 62px;
+  }
+</style>
 
 
 {% schema %}
     {
-        "name": "About Banner",
-        "settings": [
-            {
-                "type": "image_picker",
-                "id": "image",
-                "label": "image"
-            },
-            {
-                "type": "textarea",
-                "id": "text",
-                "label": "text"
-            }
-
-        ],
-        "presets": [
-            {
-                "name": "About Banner"
-            }
-        ]
+      "name": "About Banner",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link",
+          "label": "YouTube Video Link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ],
+      "presets": [
+        {
+          "name": "About Banner"
+        }
+      ]
     }
-{% endschema %}
+    {% endschema %}
+    
