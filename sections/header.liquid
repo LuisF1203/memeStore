@@ -134,119 +134,112 @@
           </div>
 
 
-
-
-
-
-
-
-
           <a
-          id="cart-toggle"
-          href="javascript:void(0);"
-          style="color: white;">
-          <span class="relative">
-            {% render 'icon-shopping-bag' %}
-          </span>
+            id="cart-toggle"
+            href="javascript:void(0);"
+            style="color: white;">
+            <span class="relative">
+              {% render 'icon-shopping-bag' %}
+            </span>
+
+            {% if cart.item_count > 0 %}
+              <div class="bg-red-500 w-3 h-3 p-1 rounded-full flex items-center justify-center absolute top-0 right-0 z-0">
+                <span class="text-white text-xs font-bold">{{ cart.item_count }}</span>
+              </div>
+            {% endif %}
+          </a>
+
 
           {% if cart.item_count > 0 %}
-            <div class="bg-red-500 w-3 h-3 p-1 rounded-full flex items-center justify-center absolute top-0 right-0 z-0">
-              <span class="text-white text-xs font-bold">{{ cart.item_count }}</span>
-            </div>
-          {% endif %}
-        </a>
-
-
-        {% if cart.item_count > 0 %}
-          <div id="cart-container" class="fixed top-24 right-2 bg-white text-black p-5 w-[15%] shadow-2xl cart-animation">
-            <div>
-              <button class="absolute top-3 right-2">
-                {% render 'icon-close' %}
-              </button>
-              <div class="mt-5 mb-2">
-                <h3 class="font-bold text-xl">Tu carrito</h3>
-                <div class="flex justify-between text-xs text-gray-400 mt-5 mb-2">
-                  <p>PRODUCTO</p>
-                  <p>TOTAL</p>
-                </div>
-                <hr class="mb-5 mt-2">
-
-                <form action="{{ routes.cart_url }}" method="POST">
-                  {% for item in cart.items %}
-                    <div class="flex justify-between items-start mb-4">
-                      <div class="flex items-center flex-1 mr-2">
-                        <img
-                          src="{{ item.product.featured_image | img_url: 'small' }}"
-                          alt="{{ item.product.title }}"
-                          class="w-16 h-16 mr-2">
-                        <div>
-                          <p class="font-semibold">{{ item.product.title }}</p>
-                          <p class="text-xs text-gray-400">Cantidad: {{ item.quantity }}</p>
-                        </div>
-                      </div>
-                      <div class="flex flex-col items-end">
-                        <p class="font-bold">{{ item.price | money }}</p>
-
-                        <td class="py-4 px-2">
-                          <input
-                            type="number"
-                            name="updates[{{ item.id }}]"
-                            value="{{ item.quantity }}"
-                            min="0"
-                            class="w-20 border p-2">
-                        </td>
-
-                        <div class="flex mt-1">
-                          <a href="javascript:void(0);" 
-                             class="w-3 font-medium text-red-500 my-1 hover:animate-pulse" 
-                             onclick="removeFromCart({{ forloop.index }})">
-                            {% render 'icon-trashcan' %}
-                          </a>
-                        </div>
-                        
-
-
-                        <script>
-                            function removeFromCart(line) {
-                              fetch(`{{ routes.cart_change_url }}?line=${line}&quantity=0`, {
-                                method: 'POST',
-                                headers: {
-                                  'Content-Type': 'application/json',
-                                }
-                              })
-                              .then(response => {
-                                if (response.ok) {
-                                  location.reload();
-                                } else {
-                                  console.error('Error al eliminar el producto');
-                                }
-                              })
-                              .catch(error => console.error('Error:', error));
-                            }
-                        </script>
-
-                      </div>
-                    </div>
-                  {% endfor %}
-
-                  <div class="mt-5">
-                    <div class="flex justify-between font-bold">
-                      <h3>Total estimado</h3>
-                      <p>{{ cart.total_price | money }}</p>
-                    </div>
-                    <span class="text-xs text-gray-400">Impuestos, descuentos y envío calculados en la pantalla de pago.</span>
+            <div id="cart-container" class="fixed top-24 right-2 bg-white text-black p-5 w-[15%] shadow-2xl cart-animation hidden md:block">
+              <div>
+                <button class="absolute top-3 right-2">
+                  {% render 'icon-close' %}
+                </button>
+                <div class="mt-5 mb-2">
+                  <h3 class="font-bold text-xl">Tu carrito</h3>
+                  <div class="flex justify-between text-xs text-gray-400 mt-5 mb-2">
+                    <p>PRODUCTO</p>
+                    <p>TOTAL</p>
                   </div>
-                  <button
-                    type="submit"
-                    name="checkout"
-                    class="text-center w-full bg-[#252525] p-2 transition-all text-white hover:scale-105 mt-2">Pagar pedido</button>
-                </form>
+                  <hr class="mb-5 mt-2">
+
+                  <form action="{{ routes.cart_url }}" method="POST">
+                    {% for item in cart.items %}
+                      <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center flex-1 mr-2">
+                          <img
+                            src="{{ item.product.featured_image | img_url: 'small' }}"
+                            alt="{{ item.product.title }}"
+                            class="w-16 h-16 mr-2">
+                          <div>
+                            <p class="font-semibold">{{ item.product.title }}</p>
+                            <p class="text-xs text-gray-400">Cantidad: {{ item.quantity }}</p>
+                          </div>
+                        </div>
+                        <div class="flex flex-col items-end">
+                          <p class="font-bold">{{ item.price | money }}</p>
+
+                          <td class="py-4 px-2">
+                            <input
+                              type="number"
+                              name="updates[{{ item.id }}]"
+                              value="{{ item.quantity }}"
+                              min="0"
+                              class="w-20 border p-2">
+                          </td>
+
+                          <div class="flex mt-1">
+                            <a
+                              href="javascript:void(0);"
+                              class="w-3 font-medium text-red-500 my-1 hover:animate-pulse"
+                              onclick="removeFromCart({{ forloop.index }})">
+                              {% render 'icon-trashcan' %}
+                            </a>
+                          </div>
+
+                          <script>
+                                                      function removeFromCart(line) {
+                            fetch(`{{ routes.cart_change_url }}?line=${line}&quantity=0`, {
+                              method: 'POST',
+                              headers: {
+                                'Content-Type': 'application/json',
+                              }
+                            })
+                            .then(response => {
+                              if (response.ok) {
+                                location.reload();
+                              } else {
+                                console.error('Error al eliminar el producto');
+                              }
+                            })
+                            .catch(error => console.error('Error:', error));
+                                                      }
+                          </script>
+
+                        </div>
+                      </div>
+                    {% endfor %}
+
+                    <div class="mt-5">
+                      <div class="flex justify-between font-bold">
+                        <h3>Total estimado</h3>
+                        <p>{{ cart.total_price | money }}</p>
+                      </div>
+                      <span class="text-xs text-gray-400">Impuestos, descuentos y envío calculados en la pantalla de pago.</span>
+                    </div>
+                    <button
+                      type="submit"
+                      name="checkout"
+                      class="text-center w-full bg-[#252525] p-2 transition-all text-white hover:scale-105 mt-2">Pagar pedido</button>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
 
-        <script>
+
+          <script>
               document.addEventListener("DOMContentLoaded", function() {
                 const closeButton = document.querySelector('.absolute.top-3.right-2');
                 const cartContainer = document.querySelector('#cart-container');
@@ -255,43 +248,26 @@
                   cartContainer.style.display = 'none';
                 });
               });
-        </script>
+          </script>
 
-        <script>
+          <script>
               document.addEventListener("DOMContentLoaded", function() {
                 const cartToggle = document.getElementById('cart-toggle');
                 const cartContainer = document.getElementById('cart-container');
             
                 cartToggle.addEventListener('click', function() {
-                  if (cartContainer.style.display === 'none' || cartContainer.style.display === '') {
-                      cartContainer.style.display = 'block';
+                  if (window.innerWidth <= 768) {
+                    window.location.href = '{{ routes.cart_url }}';
                   } else {
+                    if (cartContainer.style.display === 'none' || cartContainer.style.display === '') {
+                      cartContainer.style.display = 'block';
+                    } else {
                       cartContainer.style.display = 'none';
+                    }
                   }
                 });
               });
-        </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          </script>
 
         </div>
 
