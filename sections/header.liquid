@@ -160,10 +160,10 @@
                     <p>TOTAL</p>
                   </div>
                   <hr class="mb-5 mt-2">
-
-                  <form action="{{ routes.cart_url }}" method="POST">
+          
+                  <form action="{{ routes.cart_url }}" method="POST" id="cart-form">
                     {% for item in cart.items %}
-                      <div class="flex justify-between items-start mb-4">
+                      <div class="flex justify-between items-start mb-4" data-item-id="{{ item.id }}" data-item-price="{{ item.price }}">
                         <div class="flex items-center flex-1 mr-2">
                           <img
                             src="{{ item.product.featured_image | img_url: 'small' }}"
@@ -175,17 +175,13 @@
                           </div>
                         </div>
                         <div class="flex flex-col items-end">
-                          <p class="font-bold">{{ item.price | money }}</p>
-
-                          <td class="py-4 px-2">
-                            <input
-                              type="number"
-                              name="updates[{{ item.id }}]"
-                              value="{{ item.quantity }}"
-                              min="0"
-                              class="w-20 border p-2">
-                          </td>
-
+                          <p class="font-bold item-price">{{ item.price | money }}</p>
+                          <input
+                            type="number"
+                            name="updates[{{ item.id }}]"
+                            value="{{ item.quantity }}"
+                            min="1"
+                            class="w-20 border p-2 quantity-input" />
                           <div class="flex mt-1">
                             <a
                               href="javascript:void(0);"
@@ -194,34 +190,14 @@
                               {% render 'icon-trashcan' %}
                             </a>
                           </div>
-
-                          <script>
-                                                      function removeFromCart(line) {
-                            fetch(`{{ routes.cart_change_url }}?line=${line}&quantity=0`, {
-                              method: 'POST',
-                              headers: {
-                                'Content-Type': 'application/json',
-                              }
-                            })
-                            .then(response => {
-                              if (response.ok) {
-                                location.reload();
-                              } else {
-                                console.error('Error al eliminar el producto');
-                              }
-                            })
-                            .catch(error => console.error('Error:', error));
-                                                      }
-                          </script>
-
                         </div>
                       </div>
                     {% endfor %}
-
+          
                     <div class="mt-5">
                       <div class="flex justify-between font-bold">
                         <h3>Total estimado</h3>
-                        <p>{{ cart.total_price | money }}</p>
+                        <p id="total-price">{{ cart.total_price | money }}</p>
                       </div>
                       <span class="text-xs text-gray-400">Impuestos, descuentos y envío calculados en la pantalla de pago.</span>
                     </div>
@@ -234,39 +210,85 @@
               </div>
             </div>
           {% endif %}
-
-
+          
           <script>
-              document.addEventListener("DOMContentLoaded", function() {
-                const closeButton = document.querySelector('.absolute.top-3.right-2');
-                const cartContainer = document.querySelector('#cart-container');
-            
-                closeButton.addEventListener('click', function() {
-                  cartContainer.style.display = 'none';
+            document.addEventListener("DOMContentLoaded", function() {
+              const closeButton = document.querySelector('.absolute.top-3.right-2');
+              const cartContainer = document.querySelector('#cart-container');
+          
+              closeButton.addEventListener('click', function() {
+                cartContainer.style.display = 'none';
+              });
+          
+              const quantityInputs = document.querySelectorAll('.quantity-input');
+              const totalPriceElement = document.getElementById('total-price');
+          
+              quantityInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                  const itemContainer = input.closest('[data-item-id]');
+                  const itemPrice = parseFloat(itemContainer.dataset.itemPrice) / 100;
+                  const quantity = parseInt(input.value) || 0;
+                  const newPrice = itemPrice * quantity;
+          
+                  itemContainer.querySelector('.item-price').textContent = newPrice.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+          
+                  let total = 0;
+                  document.querySelectorAll('.item-price').forEach(priceElement => {
+                    const price = parseFloat(priceElement.textContent.replace(/[^\d.-]+/g, ""));
+                    total += price;
+                  });
+                  totalPriceElement.textContent = total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
                 });
               });
-          </script>
-
-          <script>
-              document.addEventListener("DOMContentLoaded", function() {
-                const cartToggle = document.getElementById('cart-toggle');
-                const cartContainer = document.getElementById('cart-container');
-            
-                cartToggle.addEventListener('click', function() {
-                  if (window.innerWidth <= 768) {
-                    window.location.href = '{{ routes.cart_url }}';
+          
+              const cartToggle = document.getElementById('cart-toggle');
+              cartToggle.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                  window.location.href = '{{ routes.cart_url }}';
+                } else {
+                  if (cartContainer.style.display === 'none' || cartContainer.style.display === '') {
+                    cartContainer.style.display = 'block';
                   } else {
-                    if (cartContainer.style.display === 'none' || cartContainer.style.display === '') {
-                      cartContainer.style.display = 'block';
-                    } else {
-                      cartContainer.style.display = 'none';
-                    }
+                    cartContainer.style.display = 'none';
                   }
-                });
+                }
               });
+            });
+          
+            function removeFromCart(line) {
+              fetch(`{{ routes.cart_change_url }}?line=${line}&quantity=0`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                }
+              })
+              .then(response => {
+                location.reload();
+                if (response.ok) {
+                  const itemContainer = document.querySelector(`[data-item-id='${line}']`);
+                  itemContainer.remove();
+                  location.reload();
+                  const totalPriceElement = document.getElementById('total-price');
+                  let total = 0;
+                  document.querySelectorAll('.item-price').forEach(priceElement => {
+                    const price = parseFloat(priceElement.textContent.replace(/[^\d.-]+/g, ""));
+                    total += price;
+                  });
+                  totalPriceElement.textContent = total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+          
+                  const itemCountElement = document.querySelector('#cart-toggle .bg-red-500 span');
+                  if (itemCountElement) {
+                    const newCount = parseInt(itemCountElement.textContent) - 1;
+                    itemCountElement.textContent = newCount > 0 ? newCount : '';
+                  }
+                } else {
+                  console.error('Error al eliminar el producto');
+                }
+              })
+              .catch(error => console.error('Error:', error));
+            }
           </script>
-
-        </div>
+          
 
 
 

@@ -1,8 +1,0 @@
-{
-    "sections": {
-        "main": {
-            "type": "example-page"
-        }
-    },
-    "order": ["main"]
-}
