@@ -25,8 +25,11 @@
         "subtitle": "sonrisas garantizadas",
         "text": "Explora nuestra colección de playeras con memes icónicos y originales. Encuentra diseños que te harán reír y destacar. ¡Compra ahora y lleva el humor contigo!",
         "txtBtn": "Explorar",
-        "video": "shopify:\/\/files\/videos\/Bob Esponja y Patricio corriendo y Patricio explota (Meme).mp4",
-        "collection": ""
+        "video": "shopify://files/videos/intro1.mp4",
+        "collection": "",
+        "titleSize": 50,
+        "subtitleSize": 30,
+        "textSize": 15
       }
     },
     "featured-collection": {
@@ -38,20 +41,29 @@
         "number_of_products_to_show": 4
       }
     },
+    "banner_about_biJELD": {
+      "type": "banner-about",
+      "settings": {
+        "link": "https://youtu.be/S_IrMWLWee4?si=oSnUSaAM_K2j8A7y",
+        "title": "La Historia Detrás de la Sociedad:",
+        "text": "<p>Todo comenzó con una pasión por los memes y un canal de YouTube. En <strong>Sociedad Meme</strong>, nos dedicamos a curar y compartir las recopilaciones más virales y divertidas, creando una comunidad donde el humor es nuestro idioma común.</p><p>Ahora, llevamos ese espíritu a nuestra tienda, donde puedes <strong>vestir con orgullo el meme que te representa</strong>.</p><h4>¿Estás listo para llevar el poder del meme a tu armario?</h4><h4></h4><h4></h4><h4></h4><p>Explora nuestras colecciones y encuentra las prendas que no solo te harán lucir genial, ¡sino que también sacarán sonrisas a todos a tu alrededor!</p>",
+        "href": "/collections/all"
+      }
+    },
     "template-footer": {
       "type": "template-footer",
       "settings": {
-        "title": "Footer Title",
+        "title": "\"Un día sin memes es como un día sin sol... simplemente no tiene sentido.\"",
         "menu": "main-menu",
-        "twitter": "Footer Twitter",
-        "facebook": "Footer Facebook",
-        "pinterest": "Footer Pinterest",
-        "instagram": "Footer Instagram",
-        "tiktok": "Footer Tiktok",
-        "tumblr": "Footer Tumblr",
-        "snapchat": "Footer Snapchat",
-        "youtube": "Footer Yutube",
-        "vimeo": "Footer Vimeo"
+        "twitter": "",
+        "facebook": "",
+        "pinterest": "",
+        "instagram": "https://www.instagram.com/sociedad_meme_oficial/",
+        "tiktok": "https://www.tiktok.com/@sociedad_meme",
+        "tumblr": "",
+        "snapchat": "",
+        "youtube": "https://www.youtube.com/@sociedadmeme",
+        "vimeo": ""
       }
     }
   },
@@ -59,6 +71,7 @@
     "loader_EikWjN",
     "banner-collection",
     "featured-collection",
+    "banner_about_biJELD",
     "template-footer"
   ]
 }
