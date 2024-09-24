@@ -23,47 +23,47 @@
 
       <div class="Sn-icons">
         <ul class="flex justify-around">
-          {% if section.settings.twitter %}
+          {% if section.settings.twitter != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.twitter }}" target="_blank">{% render 'icon-twitter' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.facebook %}
+          {% if section.settings.facebook != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.facebook }}" target="_blank">{% render 'icon-facebook' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.pinterest %}
+          {% if section.settings.pinterest != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.pinterest }}" target="_blank">{% render 'icon-pinterest' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.instagram %}
+          {% if section.settings.instagram != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.instagram }}" target="_blank">{% render 'icon-instagram' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.tiktok %}
+          {% if section.settings.tiktok != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.tiktok }}" target="_blank">{% render 'icon-tiktok' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.tumblr %}
+          {% if section.settings.tumblr != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.tumblr }}" target="_blank">{% render 'icon-tumblr' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.snapchat %}
+          {% if section.settings.snapchat != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.snapchat }}" target="_blank">{% render 'icon-snapchat' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.youtube %}
+          {% if section.settings.youtube != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.youtube }}" target="_blank">{% render 'icon-youtube' %}</a>
             </li>
           {% endif %}
-          {% if section.settings.vimeo %}
+          {% if section.settings.vimeo != blank %}
             <li class="ml-4">
               <a href="{{ section.settings.vimeo }}" target="_blank">{% render 'icon-vimeo' %}</a>
             </li>
