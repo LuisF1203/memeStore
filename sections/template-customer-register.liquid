@@ -5,7 +5,7 @@
 <div class="h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <div>
-            <h1 class="relative text-white text-center text-3xl font-bold mt-6">Register an account</h1>
+            <h1 class="relative text-white text-center text-3xl font-bold mt-6">Crear cuenta</h1>
         </div>
         <div class="mt-8">
             {% form 'create_customer' %}
@@ -18,7 +18,7 @@
 
                 <div class="my-2 flex bg-white relative rounded py-2 px-3">
                     <label for="first_name" class="w-[20%] text-gray-500 text-xs flex border-r-2">
-                        <span class="m-auto ml-0">First name</span>
+                        <span class="m-auto ml-0">Nombre(s)</span>
                     </label>
                     <input type="text"
                     name="customer[first_name]"
@@ -29,7 +29,7 @@
 
                 <div class="my-2 flex bg-white relative rounded py-2 px-3">
                     <label for="last_name" class="w-[20%] text-gray-500 text-xs flex border-r-2">
-                        <span class="m-auto ml-0">Last name</span>
+                        <span class="m-auto ml-0">Apellido</span>
                     </label>
                     <input type="text"
                     name="customer[last_name]"
@@ -40,7 +40,7 @@
 
                 <div class="my-2 flex bg-white relative rounded py-2 px-3">
                     <label for="birthday" class="w-[20%] text-gray-500 text-xs flex border-r-2">
-                        <span class="m-auto ml-0">Birthday</span>
+                        <span class="m-auto ml-0">Cumpleaños</span>
                     </label>
                     <input type="date"
                     name="customer[note][Birthday]"
@@ -50,7 +50,7 @@
 
                 <div class="my-2 flex bg-white relative rounded py-2 px-3">
                     <label for="email_address" class="w-[20%] text-gray-500 text-xs flex border-r-2">
-                        <span class="m-auto ml-0">Email</span>
+                        <span class="m-auto ml-0">Correo electrónico</span>
                     </label>
                     <input type="email"
                     name="customer[email]"
@@ -61,7 +61,7 @@
 
                 <div class="my-2 flex bg-white relative rounded py-2 px-3">
                     <label for="password" class="w-[20%] text-gray-500 text-xs flex border-r-2">
-                        <span class="m-auto ml-0">Password</span>
+                        <span class="m-auto ml-0">Contraseña</span>
                     </label>
                     <input type="password"
                     name="customer[password]"
@@ -70,7 +70,7 @@
                 </div>
                 <div>
                     <button type="submit" class="relative w-full py-2 px-4 text-sm font-medium text-white bg-blue-500  hover:bg-blue-600 rounded-full">
-                        Create account
+                        Crear cuenta
                     </button>
                 </div>
             {% endform %}

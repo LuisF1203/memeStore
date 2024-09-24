@@ -333,17 +333,17 @@
 
                 {% if shop.customer_accounts_enabled %}
                   {% if customer %}
-                    <a href="{{ routes.account_url }}" class="hover:opacity-75">Account</a>
+                    <a href="{{ routes.account_url }}" class="hover:opacity-75">Cuenta</a>
                     <span>
                       /
                     </span>
-                    {{ 'Log out' | customer_logout_link | replace: '<a', '<a class="text hover:opacity-75 text-red-500"' }}
+                    {{ 'Cerrar Sesión' | customer_logout_link | replace: '<a', '<a class="text hover:opacity-75 text-red-500"' }}
                   {% else %}
-                    {{ 'Log in' | customer_login_link | replace: '<a', '<a class=" hover:opacity-75" ' }}
+                    {{ 'Iniciar Sesión' | customer_login_link | replace: '<a', '<a class=" hover:opacity-75" ' }}
                     <span>
                       /
                     </span>
-                    {{ 'Register' | customer_register_link | replace: '<a', '<a class=" hover:opacity-75" ' }}
+                    {{ 'Crear Cuenta' | customer_register_link | replace: '<a', '<a class=" hover:opacity-75" ' }}
                   {% endif %}
                 {% endif %}
 

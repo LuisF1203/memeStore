@@ -26,7 +26,7 @@
 
             {% form 'customer_address', customer.new_address %}
                 <div class="mb-4">
-                    <label for="address_fname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">First name</label>
+                    <label for="address_fname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Nombre(s)</label>
                     <input 
                         type="text" 
                         name="address[first_name]" 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_lname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Last name</label>
+                    <label for="address_lname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Apellido</label>
                     <input 
                         type="text" 
                         name="address[last_name]" 
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_company_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Company</label>
+                    <label for="address_company_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Compañía</label>
                     <input 
                         type="text" 
                         name="address[company]" 
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_address1_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Address 1</label>
+                    <label for="address_address1_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Dirección 1</label>
                     <input 
                         type="text" 
                         name="address[address1]" 
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_address2_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Address 2</label>
+                    <label for="address_address2_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Dirección 2</label>
                     <input 
                         type="text" 
                         name="address[address2]" 
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_city_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">City</label>
+                    <label for="address_city_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Ciudad</label>
                     <input 
                         type="text" 
                         name="address[city]" 
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_country_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Country</label>
+                    <label for="address_country_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">País</label>
                     <select 
                         name="address[country]" 
                         id="address_country_{{ form.id }}"
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_province_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Province</label>
+                    <label for="address_province_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Provincia</label>
                     <select 
                         name="address[province]" 
                         id="address_province_{{ form.id }}"
@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_zip_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Postal/ZIP code</label>
+                    <label for="address_zip_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Codigo postal</label>
                     <input 
                         type="text" 
                         name="address[zip]" 
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="address_phone_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Phone number</label>
+                    <label for="address_phone_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Numero celular</label>
                     <input 
                         type="tel" 
                         name="address[phone]" 
@@ -139,11 +139,11 @@
                 </div>
                 <div class="mb-4">
                     {{ form.set_as_default_checkbox }}
-                    <label for="address_default_address_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Set as default address</label>
+                    <label for="address_default_address_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Dirección predeterminada</label>
                 </div>
                 <div class="flex flex-row gap-2">
-                    <button type="submit" class="w-full font-medium text-white bg-gray-700 hover:bg-gray-900 px-4 py-2">Create address</button>
-                    <button type="reset" class="w-full font-medium text-gray-700 border border-gray-700 px-4 py-2">Cancel</button>
+                    <button type="submit" class="w-full font-medium text-white bg-gray-700 hover:bg-gray-900 px-4 py-2">Crear Dirección de envío</button>
+                    <button type="reset" class="w-full font-medium text-gray-700 border border-gray-700 px-4 py-2">Cancelar</button>
                 </div>
             {% endform %}
         </div>
@@ -166,7 +166,7 @@
                     <div x-data="{ address_{{ address.id }}: false }">
                         <div class="relative flex flex-col text-center border p-2">
                             {% if address == customer.default_address %}
-                                <span class="text-xs font-medium text-white bg-green-700 px-4 py-2">Default</span>
+                                <span class="text-xs font-medium text-white bg-green-700 px-4 py-2">Predeterminada</span>
                             {% endif %}
 
                             <div class="my-8 h-full">
@@ -174,7 +174,7 @@
                             </div>
 
                             <div class="flex flex-row gap-2">
-                                <button x-on:click="address_{{ address.id }} = true" class="w-full text-xs text-white bg-gray-700 hover:bg-gray-900 font-medium py-2">Edit</button>
+                                <button x-on:click="address_{{ address.id }} = true" class="w-full text-xs text-white bg-gray-700 hover:bg-gray-900 font-medium py-2">Editar</button>
                                 <button 
                                 class="w-full text-xs font-medium text-gray-700 border py-2"
                                 data-url="{{ address.url }}"
@@ -194,7 +194,7 @@
 
                                 {% form 'customer_address', address %}
                                     <div class="mb-4">
-                                        <label for="address_fname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">First name</label>
+                                        <label for="address_fname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Nombres(s)</label>
                                         <input 
                                             type="text" 
                                             name="address[first_name]" 
@@ -205,7 +205,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_lname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Last name</label>
+                                        <label for="address_lname_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Apellido</label>
                                         <input 
                                             type="text" 
                                             name="address[last_name]" 
@@ -216,7 +216,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_company_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Company</label>
+                                        <label for="address_company_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Compañía</label>
                                         <input 
                                             type="text" 
                                             name="address[company]" 
@@ -227,7 +227,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_address1_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Address 1</label>
+                                        <label for="address_address1_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Dirección 1</label>
                                         <input 
                                             type="text" 
                                             name="address[address1]" 
@@ -238,7 +238,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_address2_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Address 2</label>
+                                        <label for="address_address2_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Dirección 2</label>
                                         <input 
                                             type="text" 
                                             name="address[address2]" 
@@ -249,7 +249,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_city_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">City</label>
+                                        <label for="address_city_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Ciudad</label>
                                         <input 
                                             type="text" 
                                             name="address[city]" 
@@ -260,7 +260,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_country_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Country</label>
+                                        <label for="address_country_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">País</label>
                                         <select 
                                             name="address[country]" 
                                             id="address_country_{{ form.id }}"
@@ -274,7 +274,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_province_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Province</label>
+                                        <label for="address_province_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Provincia</label>
                                         <select 
                                             name="address[province]" 
                                             id="address_province_{{ form.id }}"
@@ -285,7 +285,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_zip_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Postal/ZIP code</label>
+                                        <label for="address_zip_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Código postal</label>
                                         <input 
                                             type="text" 
                                             name="address[zip]" 
@@ -296,7 +296,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="address_phone_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Phone number</label>
+                                        <label for="address_phone_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Numero celular</label>
                                         <input 
                                             type="tel" 
                                             name="address[phone]" 
@@ -307,11 +307,11 @@
                                     </div>
                                     <div class="mb-4">
                                         {{ form.set_as_default_checkbox }}
-                                        <label for="address_default_address_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Set as default address</label>
+                                        <label for="address_default_address_{{ form.id }}" class="uppercase text-gray-700 text-xs font-medium mb-2">Dirección predeterminada</label>
                                     </div>
                                     <div class="flex flex-row gap-2">
-                                        <button type="submit" class="w-full font-medium text-white bg-gray-700 hover:bg-gray-900 px-4 py-2">Edit address</button>
-                                        <button type="reset" class="w-full font-medium text-gray-700 border border-gray-700 px-4 py-2">Cancel</button>
+                                        <button type="submit" class="w-full font-medium text-white bg-gray-700 hover:bg-gray-900 px-4 py-2">Editar dirección de envio</button>
+                                        <button type="reset" class="w-full font-medium text-gray-700 border border-gray-700 px-4 py-2">Cancelar</button>
                                     </div>
                                 {% endform %}
                             </div>
