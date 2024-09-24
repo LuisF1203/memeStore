@@ -17,8 +17,11 @@
 
   <div class="text-gray-300 flex flex-col justify-center">
     <h2 class="text-3xl md:text-5xl font-bold mb-5 text-gradient">{{ section.settings.title }}</h2>
-    <div class="text-justify text-base md:text-lg leading-relaxed">
+    <div class="text-justify text-base md:text-lg leading-relaxed main-history-text">
       {{ section.settings.text }}
+    </div>
+    <div class="w-full flex justify-center items-center">
+      <a href="{{ section.settings.href }}" class="bg-gray-600 hover:bg-gray-700 transition-all p-3 rounded-lg text-center font-semibold mt-5 shadow-md max-w-[100px]">Productos</a>
     </div>
   </div>
 </div>
@@ -39,32 +42,43 @@
       height: 42px;
     }
   }
+  .main-history-text p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-align: justify;
+  }
 </style>
 
 {% schema %}
-    {
-      "name": "About Banner",
-      "settings": [
-        {
-          "type": "text",
-          "id": "link",
-          "label": "YouTube Video Link"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text"
-        }
-      ],
-      "presets": [
-        {
-          "name": "About Banner"
-        }
-      ]
-    }
+  {
+    "name": "About Banner",
+    "settings": [
+      {
+        "type": "text",
+        "id": "link",
+        "label": "YouTube Video Link"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }, {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      }, {
+        "type": "text",
+        "id": "href",
+        "label": "Button Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Banner"
+      }
+    ]
+  }
 {% endschema %}

@@ -3,31 +3,20 @@
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-
 {% assign selected_variant = product.selected_or_first_available_variant %}
+
 <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 
 <style>
-
-
-  /*
-
-   .swiper-button-prev, .swiper-button-next { color: black; top: auto !important; height: 20px; } 
-   .swiper-button-prev::after, .swiper-button-next::after { font-size: 20px; } 
-   .swiper-pagination { color: black; bottom: 0 !important; } 
-   .swiper-pagination-bullet-active { background: black !important; } 
-*/
   .product--information {
     height: fit-content;
   }
+
   #main-nav {
     background: rgba(0, 0, 0, 0.9) !important;
   }
-  .swiper-pagination-bullet {
-    background: white;
-  }
 
-  .swiper-pagination-bullet-active {
+  .swiper-pagination-bullet {
     background: white;
   }
 
@@ -41,25 +30,26 @@
     color: lightgray;
   }
 
+  @media (max-width: 768px) {
+    .product--medias {
+      width: 100%;
+    }
+
+    .product--information {
+      position: relative;
+      /* Change sticky to relative for smaller screens */
+    }
+  }
 </style>
 
 <div class="w-full" x-data="{ productModelModalOpen: false }">
   <div class="w-full my-8 p-10 pt-0">
+    <div class="flex flex-col md:flex-row justify-center gap-10 w-full">
+      <div class="product--medias w-full md:w-[45%]">
 
-    <!-- class="grid grid-cols-1 md:grid-cols-2 gap-3" -->
-    <div class="flex justify-center gap-10 w-full">
-      <div class="product--medias w-[45%]">
+
         <div class="hidden md:block">
-
-          <!-- {% for media in product.media %}
- <div class="h-100 overflow-hidden p-2">
-              {% render 'product-media'
-                , media: media %}
-            </div>
-          {% endfor %}
-          -->
           <div class="swiper">
-            <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               {% for media in product.media %}
                 <div class="swiper-slide">
@@ -70,42 +60,14 @@
                 </div>
               {% endfor %}
             </div>
-            <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-            <!-- If we need scrollbar -->
-            <div class="swiper-scrollbar"></div>
-          </div>
-
-
-        </div>
-
-        <div class="md:hidden">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              {% for media in product.media %}
-                <div class="swiper-slide">
-                  <div class="h-[100vw] overflow-hidden p-2">
-                    {% render 'product-media'
-                      , media: media %}
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-
-            <div class="swiper-pagination"></div>
-
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
           </div>
         </div>
       </div>
 
-      <div class="product--information sticky top-5 p-2 ">
+      <div class="product--information p-2 w-full md:w-[50%]">
         {% form 'product'
           , product
           , id: 'product-form'
@@ -123,7 +85,24 @@
                 </div>
               {% when 'title' %}
                 <div class="my-3">
-                  <h1 class="text-5xl text-gray-900">{{ product.title }}</h1>
+                  <h1 class="text-3xl md:text-5xl text-gray-900">{{ product.title }}</h1>
+                </div>
+                <div class="md:hidden">
+                  <div class="swiper">
+                    <div class="swiper-wrapper">
+                      {% for media in product.media %}
+                        <div class="swiper-slide">
+                          <div class="h-[100vw] overflow-hidden p-2">
+                            {% render 'product-media'
+                              , media: media %}
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                  </div>
                 </div>
               {% when 'price' %}
                 <div class="my-3" id="price-{{ section.id }}">
@@ -165,9 +144,6 @@
                               value="{{ value | escape }}">{{ value }}</button>
                           {% endfor %}
                         </div>
-                        <script type="application/json">
-                          {{ product.variants | json }}
-                        </script>
                       {% endfor %}
                     </variant-selector>
                   {% endunless %}
@@ -191,12 +167,7 @@
                     list-style-type: disc;
                     margin-left: 1.5rem;
                   }
-                  .custom-list ul li {
-                    list-style-type: disc;
-                    margin-left: 1.5rem;
-                  }
                   .custom-list ol {
-                    list-style-type: decimal;
                     margin-left: 1.5rem;
                   }
                 </style>
@@ -207,34 +178,9 @@
           {% endfor %}
         {% endform %}
 
-        <script>
-          document.getElementById('product-form').onsubmit = function(event) {
-            event.preventDefault(); // Evita la redirección
-                  
-            const formData = new FormData(this);
-            
-            fetch(this.action, {
-              method: 'POST',
-              body: formData,
-            })
-            .then(response => {
-              if (response.ok) {
-                console.log('Producto agregado al carrito');
-                location.reload();
-              } else {
-                console.error('Error al agregar el producto al carrito');
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
-          };
-        </script>
-
 
         <div class="mt-10">
-          <p class="text-sm">Formas de pago seguro y protegido por:
-          </p>
+          <p class="text-sm">Formas de pago seguro y protegido por:</p>
           <div class="pl-10 pr-10">
             <div class="flex gap-2 justify-between mt-10">
               {% render 'icon-amex' %}
@@ -244,15 +190,33 @@
               {% render 'icon-visa' %}
             </div>
           </div>
-
         </div>
-
-
       </div>
     </div>
   </div>
 
 
+  <script>
+    document.getElementById('product-form').onsubmit = function(event) {
+      event.preventDefault(); // Evita la redirección
+      const formData = new FormData(this);
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Producto agregado al carrito');
+          location.reload();
+        } else {
+          console.error('Error al agregar el producto al carrito');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    };
+  </script>
   <style>
     .media model-viewer,
     .media > * {
@@ -274,7 +238,6 @@
               {% render 'icon-close' %}
             </button>
           </div>
-
           <div
             id="body"
             class="media block relative"
@@ -284,6 +247,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Start of Judge.me code -->
 <div style='clear:both'></div>
